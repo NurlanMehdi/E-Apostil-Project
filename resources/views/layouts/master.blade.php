@@ -27,11 +27,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;200&display=swap" rel="stylesheet">
     <title>@yield('title')</title>
 </head>
-<body>
-     @yield('content')
-     <script src="{{asset('vendor/jQuery/jquery-3.5.1.js')}}"></script>
-     <script src="{{asset('vendor/popper/popper.min.js')}}"></script>
-     <script src="{{asset('vendor/bootstrap/js/bootstrap.js')}}"></script>
-     <script src="{{asset('js/main.js')}}"></script>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="200" data-aos-easing="slide" data-aos-duration="800" data-aos-delay="0">
+@yield('content')
+<script src="{{asset('vendor/jQuery/jquery-3.5.1.js')}}"></script>
+<script src="{{asset('vendor/popper/popper.min.js')}}"></script>
+<script src="{{asset('vendor/bootstrap/js/bootstrap.js')}}"></script>
+<script src="{{asset('js/main.js')}}"></script>
 </body>
 </html>

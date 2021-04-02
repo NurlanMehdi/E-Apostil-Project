@@ -2,7 +2,7 @@
     --color-15306b: #15306b;
     --color-f3f3f3: #f3f3f3;
     --color-303030: #303030;
-    --font-work-sans:'';
+    --font-work-sans:"Nunito", sans-serif;
 }
 
 .login-page {
@@ -32,15 +32,28 @@
     min-height: 100vh;
     height: 100%;
     background-color: var(--color-15306b);
-
+    max-width: 10%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     text-align: center;
-    padding: 30px;
+    padding-top: 40px;
 }
 
+.dashboard-page-right .header{
+    padding: 0px 0px 7px;
+}
+
+.dashboard-page-right input {
+    border: 0;
+    background-color: var(--color-f3f3f3);
+}
+
+.dashboard-page-right select {
+    border: 0;
+    background-color: var(--color-f3f3f3);
+}
 .login-page .emblem img {
     height: auto;
     max-width: 10%;
@@ -80,24 +93,21 @@
 }
 
 .dashboard-page-right {
-    background: #ffffff;
-    padding: 0;
+    background-color: var(--color-f3f3f3);
+    color: #15306b;
+    padding: 9px 15px;
+    max-width: 90%;
     min-height: 100vh;
     height: 100%;
     align-items: center;
     justify-content: center;
-}
-
-.dashboard-page-right .apostil-title {
-    background-color: var(--color-f3f3f3);
-    padding: 9px 15px;
     font-style: normal;
     letter-spacing: normal;
     line-height: normal;
-    color: #15306b;
     font-family: var(--font-work-sans);
     font-size: 20px;
     font-weight: 400;
+
 }
 
 .login_form--header {
@@ -127,8 +137,13 @@
     font-family: var(--font-work-sans);
 }
 
-.user-info {
-    margin-top: 15px;
+.search-bar {
+    background-color: #FFFFFF;
+    padding: 10px;
+}
+
+#header-buttons .btn-header {
+    padding: 0px 30px;
 }
 
 .user-info a {
