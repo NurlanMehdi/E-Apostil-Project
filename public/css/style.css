@@ -1,8 +1,21 @@
+html,body {
+    height: 100%;
+}
+
+@font-face {
+    src: url('/fonts/WorkSans.ttf');
+}
+
+.dashboard-page  {
+    display: flex;
+    height: 100%;
+    overflow-x: hidden;
+}
 :root {
     --color-15306b: #15306b;
     --color-f3f3f3: #f3f3f3;
     --color-303030: #303030;
-    --font-work-sans:"Nunito", sans-serif;
+    --font-work-sans:"Work Sans", sans-serif;
 }
 
 .login-page {
@@ -29,10 +42,10 @@
 }
 
 .dashboard-page-left {
-    min-height: 100vh;
+    z-index: 2;
+    width: 200px;
     height: 100%;
     background-color: var(--color-15306b);
-    max-width: 10%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,8 +54,11 @@
     padding-top: 40px;
 }
 
+.dashboard-page-right .logout {
+    text-align: end;
+}
 .dashboard-page-right .header{
-    padding: 0px 0px 7px;
+    padding: 0px 4px 0px 13px;
 }
 
 .dashboard-page-right input {
@@ -61,13 +77,14 @@
 
 .dashboard-page-left .emblem img {
     height: auto;
-    max-width: 30%;
+    margin-top: 9px;
+    max-width: 23%;
 }
 
 .dashboard-page-left .profile-photo img {
     margin-top: 50px;
     height: auto;
-    max-width: 30%;
+    max-width:18%;
 }
 
 .login-page .emblem-text h6{
@@ -85,20 +102,24 @@
     margin-top: 25px;
     color: #ffffff;
     font-family: var(--font-work-sans);
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 400;
     font-style: normal;
     letter-spacing: normal;
     line-height: normal;
 }
 
+.apostil-reyestr [class*="col-"] {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
 .dashboard-page-right {
+    width: calc(100% - 200px);
+    height: 6%;
     background-color: var(--color-f3f3f3);
     color: #15306b;
-    padding: 9px 15px;
-    max-width: 90%;
-    min-height: 100vh;
-    height: 100%;
+    padding: 7px;
     align-items: center;
     justify-content: center;
     font-style: normal;
@@ -137,13 +158,158 @@
     font-family: var(--font-work-sans);
 }
 
-.search-bar {
+.dashboard-page-right .search-bar {
     background-color: #FFFFFF;
-    padding: 10px;
+    padding: 20px 40px 20px;
 }
 
-#header-buttons .btn-header {
-    padding: 0px 30px;
+.dashboard-page-right .new-apostil {
+    background-color: #FFFFFF;
+    /*height: calc(100% - 31px);*/
+    padding: 54px 40px 0px 112px;
+}
+
+.dashboard-page-right .new-apostil-create {
+    background-color: #FFFFFF;
+    /*height: calc(100% - 130px);*/
+    padding: 23px 43px 0px 70px;
+}
+
+.dashboard-page-right .apostil-info {
+    padding: 13px 0px 10px 300px;
+}
+
+.dashboard-page-right .apostil-info input{
+    height: 31px;
+    width: 250px;
+    padding: 10px;
+    font-size: 13px
+}
+
+.dashboard-page-right .apostil-info select{
+    height: 31px;
+    width: 250px;
+    padding: 0px 6px;
+    font-size: 13px;
+    border:0px;
+    outline:0px;
+}
+
+.dashboard-page-right .apostil-info label{
+    font-size: 15px;
+    color: var(--color-303030);
+    margin-right: 6px;
+    width: 230px;
+    text-align: end;
+}
+
+.dashboard-page-right .apostil-info .col-md-6, .col-md-12{
+    padding: 8px 5px;
+}
+
+.dashboard-page-right .apostil-info .qeydler input{
+    width: 69%;
+}
+
+.dashboard-page-right .apostil-info .qisa-mezmun input{
+    height: 80px;
+    width: 69%;
+    padding: 5px 15px 54px 8px !important;
+}
+
+.pcht-label {
+    text-align: start !important;
+}
+
+.dashboard-page-right .apostil-info .pocht{
+    width: 15px;
+    margin-left: 242px;
+    height: 14px;
+}
+
+.dashboard-page-right .new-apostil-create .space{
+    background-color: var(--color-15306b);
+    width: 100%;
+    height: 37px;
+    padding: 8px 60px;
+    font-size: 16px;
+    color: #FFFFFF;
+}
+
+.dashboard-page-right .new-apostil-create .muraciet-eden-shexs{
+    background-color: var(--color-f3f3f3);
+    width: 100%;
+    height: 61px;
+    padding: 22px 60px;
+    font-size: 16px;
+    color: var(--color-15306b);
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}
+
+.dashboard-page-right .new-apostil-create .muraciet-eden-shexs div{
+    padding: 0px;
+}
+
+.dashboard-page-right .new-apostil-create .add-muraciet-eden-shexs{
+    text-align: right;
+    margin-top: -9px;
+
+}
+
+.dashboard-page-right .new-apostil-create .add-muraciet-eden-shexs label{
+    font-size: 11px;
+}
+
+.dashboard-page-right .new-apostil-title {
+    font-size: 29px;
+}
+
+.dashboard-page-right .save-button {
+    text-align: center;
+    font-size: 10px;
+}
+
+.dashboard-page-right .save-button img {
+    margin-top: 7px;
+}
+
+.dashboard-page-right .new-apostil-title {
+    font-size: 29px;
+}
+
+.dashboard-page-right .page-title {
+    padding: 40px 47px;
+    font-size: 30px;
+}
+
+.header .title {
+    margin-left: 13px;
+}
+
+.btn-header-container {
+    padding: 0px 40px;
+}
+
+.search-bar input,select {
+    width: 77%;
+    padding: 0px 13px;
+    height: 36px;
+    font-size: 14px;
+}
+
+select {
+    outline: 0;
+}
+
+.btn-header {
+    font-size: 13px;
+    text-align: center;
+    margin-top: 13px;
+}
+
+.user-info {
+    padding: 2.3rem !important;
 }
 
 .user-info a {
@@ -151,7 +317,7 @@
 }
 
 .user-info label {
-    font-size: 12px;
+    font-size: 10px;
 }
 
 .nav-bar {
@@ -175,7 +341,7 @@
 }
 
 .dropdown .info-text {
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .container-user-info .dropdown-menu {
@@ -184,7 +350,7 @@
 }
 
 .container-user-info .dropdown {
-    margin-top: 60px;
+    margin-top: 10px;
 }
 
 .login-center .password-title {
