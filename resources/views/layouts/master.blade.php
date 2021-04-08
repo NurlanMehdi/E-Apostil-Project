@@ -69,11 +69,16 @@
         </div>
         <div class="dashboard-page-right">
             <div class="row header">
-                <div class="col-md-11"><label>{{__('language.elektronApostilReyestri')}}</label></div>
+                <div class="col-md-11"><h6>{{__('language.elektronApostilReyestri')}}</h6></div>
 
-                <div class="col-md-1 logout">
-                    {{__('language.chixish')}}&nbsp<a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit()"><img src="{{asset('files/icons/exit-icon.png')}}"></a>
-                    <form id="logout-form" action="{{route('logout.handle')}}" method="post">{{csrf_field()}}</form>
+                <div class="col-md-1 ">
+                    <div class="row">
+                        <div class="col-md-5 logout"><h6>{{__('language.chixish')}}</h6></div>
+                        <div class="col-md-7"><a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit()"><img src="{{asset('files/icons/exit-icon.png')}}"></a>
+                            <form id="logout-form" action="{{route('logout.handle')}}" method="post">{{csrf_field()}}</form></div>
+                    </div>
+
+
                 </div>
             </div>
             @yield('content')

@@ -161,7 +161,6 @@ html,body {
 
 .dashboard-page-right .new-apostil {
     background-color: #FFFFFF;
-    height: calc(100% - 870px);
     padding: 54px 40px 0px 112px;
 }
 
@@ -213,19 +212,20 @@ html,body {
     padding: 5px 15px 54px 8px !important;
 }
 
-.bashliq label {
+.bashliq h6
+{
     padding: 8px 0px;
 }
 
 .pcht-label {
-    font-size: 16px;
+    font-size: 14px;
     margin-top: 9px;
     color: var(--color-303030);
 }
 
 .dashboard-page-right .pocht{
     float: right;
-    width: 8% !important;
+    width: 5% !important;
 }
 
 .dashboard-page-right .new-apostil-create .space{
@@ -246,7 +246,7 @@ html,body {
 }
 
 .dashboard-page-right .new-apostil-create .metnDaxilEdin input{
-    width: 92.3%;
+    width: 93.75%;
 }
 
 .dashboard-page-right .new-apostil-create select{
@@ -266,7 +266,7 @@ html,body {
 }
 
 .dashboard-page-right .new-apostil-create .bashliq{
-    font-size: 15px;
+    font-size: 14px;
     color: var(--color-303030);
     text-align: end;
     font-family: var(--font-work-sans-regular);
