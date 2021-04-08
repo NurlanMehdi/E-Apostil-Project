@@ -16,6 +16,7 @@ html,body {
     --color-f3f3f3: #f3f3f3;
     --color-303030: #303030;
     --font-work-sans:"Work Sans", sans-serif;
+    --font-work-sans-regular:"Work Sans - Regular 400;
 }
 
 .login-page {
@@ -61,12 +62,7 @@ html,body {
     padding: 0px 4px 0px 13px;
 }
 
-.dashboard-page-right input {
-    border: 0;
-    background-color: var(--color-f3f3f3);
-}
-
-.dashboard-page-right select {
+.dashboard-page-right input,select {
     border: 0;
     background-color: var(--color-f3f3f3);
 }
@@ -116,7 +112,6 @@ html,body {
 
 .dashboard-page-right {
     width: calc(100% - 200px);
-    height: 6%;
     background-color: var(--color-f3f3f3);
     color: #15306b;
     padding: 7px;
@@ -135,6 +130,7 @@ html,body {
     color: var(--color-15306b);
     font-size: 24px;
     font-weight: 400;
+    height: calc(100% - 930px);
     font-style: normal;
     letter-spacing: normal;
     line-height: normal;
@@ -165,13 +161,13 @@ html,body {
 
 .dashboard-page-right .new-apostil {
     background-color: #FFFFFF;
-    /*height: calc(100% - 31px);*/
+    height: calc(100% - 870px);
     padding: 54px 40px 0px 112px;
 }
 
 .dashboard-page-right .new-apostil-create {
     background-color: #FFFFFF;
-    /*height: calc(100% - 130px);*/
+    overflow-y: auto;
     padding: 23px 43px 0px 70px;
 }
 
@@ -217,14 +213,19 @@ html,body {
     padding: 5px 15px 54px 8px !important;
 }
 
-.pcht-label {
-    text-align: start !important;
+.bashliq label {
+    padding: 8px 0px;
 }
 
-.dashboard-page-right .apostil-info .pocht{
-    width: 15px;
-    margin-left: 242px;
-    height: 14px;
+.pcht-label {
+    font-size: 16px;
+    margin-top: 9px;
+    color: var(--color-303030);
+}
+
+.dashboard-page-right .pocht{
+    float: right;
+    width: 8% !important;
 }
 
 .dashboard-page-right .new-apostil-create .space{
@@ -234,6 +235,22 @@ html,body {
     padding: 8px 60px;
     font-size: 16px;
     color: #FFFFFF;
+    margin-top: 14px;
+}
+
+.dashboard-page-right .new-apostil-create input{
+    height: 87%;
+    width: 80%;
+    font-size: 13px;
+    padding: 0px 17px;
+}
+
+.dashboard-page-right .new-apostil-create .metnDaxilEdin input{
+    width: 92.3%;
+}
+
+.dashboard-page-right .new-apostil-create select{
+    width: 80.1%;
 }
 
 .dashboard-page-right .new-apostil-create .muraciet-eden-shexs{
@@ -245,16 +262,24 @@ html,body {
     color: var(--color-15306b);
     margin-right: 0 !important;
     margin-left: 0 !important;
+    margin-top: 9px;
 }
 
-.dashboard-page-right .new-apostil-create .muraciet-eden-shexs div{
+.dashboard-page-right .new-apostil-create .bashliq{
+    font-size: 15px;
+    color: var(--color-303030);
+    text-align: end;
+    font-family: var(--font-work-sans-regular);
+}
+
+.dashboard-page-right .new-apostil-create .button-group{
+    padding: 1% 0% 0% 10%;
+}
+
+.dashboard-page-right .new-apostil-create .add-muraciet-eden-shexs {
     padding: 0px;
-}
-
-.dashboard-page-right .new-apostil-create .add-muraciet-eden-shexs{
-    text-align: right;
-    margin-top: -9px;
-
+    text-align: end;
+    margin-top: -6px;
 }
 
 .dashboard-page-right .new-apostil-create .add-muraciet-eden-shexs label{
