@@ -407,13 +407,13 @@ html,body {
 }
 
 .btn-header-container {
-    padding: 0px 40px;
+    padding: 0px 10%;
 }
 
 .search-bar input,select {
     width: 77%;
     padding: 0px 13px;
-    height: 36px;
+    height: 45%;
     font-size: 14px;
 }
 
