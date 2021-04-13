@@ -24,12 +24,14 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;400&display=swap" rel="stylesheet">
     <title>@yield('title')</title>
 </head>
 <body>
 @if(auth()->check())
     <div class="dashboard-page">
+        @yield('modal')
         <div class="dashboard-page-left">
             <div class="row">
                 <div class="col-md-12">
@@ -69,11 +71,11 @@
         </div>
         <div class="dashboard-page-right">
             <div class="row header">
-                <div class="col-md-11"><h6>{{__('language.elektronApostilReyestri')}}</h6></div>
+                <div class="col-md-11"><h5>{{__('language.elektronApostilReyestri')}}</h5></div>
 
-                <div class="col-md-1 ">
-                    <div class="row">
-                        <div class="col-md-5 logout"><h6>{{__('language.chixish')}}</h6></div>
+                <div class="col-md-1">
+                    <div class="row logout">
+                        <div class="col-md-5"><h6>{{__('language.chixish')}}</h6></div>
                         <div class="col-md-7"><a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit()"><img src="{{asset('files/icons/exit-icon.png')}}"></a>
                             <form id="logout-form" action="{{route('logout.handle')}}" method="post">{{csrf_field()}}</form></div>
                     </div>
@@ -92,6 +94,8 @@
 <script src="{{asset('vendor/popper/popper.min.js')}}"></script>
 <script src="{{asset('vendor/bootstrap/js/bootstrap.js')}}"></script>
 <script src="{{asset('js/main.js')}}"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
 @yield('javascript')
 </body>
 </html>
