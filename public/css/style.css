@@ -56,8 +56,17 @@ html,body {
 }
 
 .dashboard-page-right .logout {
-    text-align: end;
+    float: right;
 }
+
+.dashboard-page-right .logout .col-md-7 {
+    margin-top: -3px;
+}
+
+.new-apostil-user .close-modal a {
+    float: right;
+}
+
 .dashboard-page-right .header{
     padding: 0px 4px 0px 13px;
 }
@@ -156,7 +165,7 @@ html,body {
 
 .dashboard-page-right .search-bar {
     background-color: #FFFFFF;
-    padding: 20px 40px 20px;
+    padding: 16px 12px 4px;
 }
 
 .dashboard-page-right .new-apostil {
@@ -164,9 +173,20 @@ html,body {
     padding: 54px 40px 0px 112px;
 }
 
+.dashboard-page-right .new-apostil-user {
+    background-color: #FFFFFF;
+}
+
+.dashboard-page-right .new-apostil-user .close-modal {
+    padding: 0px 25px 0px 25px;
+}
+
+.dashboard-page-right .new-apostil-user .content {
+    padding: 0px 64px 20px 63px
+}
+
 .dashboard-page-right .new-apostil-create {
     background-color: #FFFFFF;
-    overflow-y: auto;
     padding: 23px 43px 0px 70px;
 }
 
@@ -232,10 +252,20 @@ html,body {
     background-color: var(--color-15306b);
     width: 100%;
     height: 37px;
-    padding: 8px 60px;
+    padding: 8px 30px;
     font-size: 16px;
     color: #FFFFFF;
     margin-top: 14px;
+}
+
+
+.dashboard-page-right .new-apostil-create .spaceUser{
+    background-color: var(--color-15306b);
+    width: 100%;
+    height: 37px;
+    padding: 8px 30px;
+    font-size: 16px;
+    color: #FFFFFF;
 }
 
 .dashboard-page-right .new-apostil-create input{
@@ -245,12 +275,76 @@ html,body {
     padding: 0px 17px;
 }
 
-.dashboard-page-right .new-apostil-create .metnDaxilEdin input{
-    width: 93.75%;
+.dashboard-page-right .new-apostil-user input{
+    height: 87%;
+    width: 100%;
+    font-size: 13px;
+    padding: 0px 17px;
 }
 
-.dashboard-page-right .new-apostil-create select{
-    width: 80.1%;
+.dashboard-page-right .new-apostil-user select{
+    width: 100%;
+}
+
+.dashboard-page-right .new-apostil-user .senedin-tipi-select{
+    width: 58.1%;
+}
+
+.dashboard-page-right .new-apostil-user .dogum-tarixi {
+    width: 26%;
+}
+
+.dashboard-page-right .new-apostil-user .vetendashligi {
+    width: 31%;
+}
+.dashboard-page-right select *
+{
+    border-radius: 15px;
+    padding: 0px 0px 0px 0px;
+    background-color: var(--color-f3f3f3);
+}
+
+.dashboard-page-right .new-apostil-user .ePocht {
+    width: 31%;
+}
+
+.dashboard-page-right .new-apostil-user .elaqeTelefonu {
+    width: 31%;
+}
+
+.dashboard-page-right .new-apostil-user .verilme-tarixi {
+    width: 84%;
+}
+
+.dashboard-page-right .datepicker-apostil{
+    background:url('/files/icons/calendar.png') no-repeat right 4% center;
+    background-size: 19px;
+    background-color: var(--color-f3f3f3);
+}
+
+/*.dashboard-page-right .new-apostil-user select{*/
+/*    width: 100%;*/
+/*}*/
+
+/*.dashboard-page-right .ishtirakchi-novu select{*/
+/*    width: 88.7%*/
+/*}*/
+
+/*.dashboard-page-right .senedin-tipi select{*/
+/*    width: 58.1%;*/
+/*}*/
+
+.dashboard-page-right .new-apostil-user .shv-axtar{
+    border: 0;
+    font-size: 16px;
+    height: 86%;
+    padding: 0px 25px;
+    color: white;
+    background-color: #15306b;
+}
+
+.dashboard-page-right .new-apostil-create .metnDaxilEdin input{
+    width: 93.75%;
 }
 
 .dashboard-page-right .new-apostil-create .muraciet-eden-shexs{
