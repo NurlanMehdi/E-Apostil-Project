@@ -4,7 +4,7 @@
         <div class="row new-apostil">
             <div class="col-md-11 new-apostil-title"><label>{{__('language.yeniApostil')}}</label></div>
             <div class="col-md-1 save-button">
-                <a><img src="{{asset('files/icons/save.png')}}"></a>
+                <a href="{{route('dashboard')}}"><img src="{{asset('files/icons/save.png')}}"></a>
                 </br>
                 <label>{{__('language.yaddaSaxla')}}</label>
             </div>
@@ -58,7 +58,7 @@
                             <div class="col-md-3"><input placeholder="{{__('language.nomresi')}}" type="number"></div>
                             <div class="col-md-3 bashliq"><h6>{{__('language.tarixi')}}</h6></div>
                             <div class="col-md-3">
-                                <input readonly='true' type="text" class="form-control datepicker-apostil tarixi"
+                                <input readonly='true' type="text" class="form-control datepicker-apostil tarixi2"
                                        value="<?= date('m-d-Y') ?>">
                             </div>
                         </div>
@@ -301,6 +301,20 @@
         });
 
         $('.verilme-tarixi').datepicker({
+            format: 'mm/dd/yyyy',
+            autoclose: true,
+            pickTime: false,
+            minView: 2
+        });
+
+        $('.tarixi').datepicker({
+            format: 'mm/dd/yyyy',
+            autoclose: true,
+            pickTime: false,
+            minView: 2
+        });
+
+        $('.tarixi2').datepicker({
             format: 'mm/dd/yyyy',
             autoclose: true,
             pickTime: false,

@@ -11,6 +11,10 @@ html,body {
     height: 100%;
     overflow-x: hidden;
 }
+
+.dashboard-page h6 {
+    font-size: 0.9rem;
+}
 :root {
     --color-15306b: #15306b;
     --color-f3f3f3: #f3f3f3;
