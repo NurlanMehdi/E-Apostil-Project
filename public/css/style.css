@@ -73,10 +73,14 @@ html,body {
 }
 
 .dashboard-page-right .header{
-    padding: 9px 9px 3px 15px;
     background-color: var(--color-f3f3f3);
     height: 5%;
-
+}
+.dashboard-page-right .header .col-md-11 {
+    padding: 13px 0px 4px 40px
+}
+.dashboard-page-right .header .col-md-1 {
+    padding: 13px 16px 4px 0px
 }
 
 .dashboard-page-right input,select {
