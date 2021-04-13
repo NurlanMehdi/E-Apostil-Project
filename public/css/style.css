@@ -1,20 +1,21 @@
 html,body {
     height: 100%;
+    overflow-x: hidden;
 }
 
 @font-face {
     src: url('/fonts/WorkSans.ttf');
 }
 
-.dashboard-page  {
+.dashboard-page {
     display: flex;
     height: 100%;
-    overflow-x: hidden;
 }
 
-.dashboard-page h6 {
+.dashboard-page  h6{
     font-size: 0.9rem;
 }
+
 :root {
     --color-15306b: #15306b;
     --color-f3f3f3: #f3f3f3;
@@ -72,7 +73,10 @@ html,body {
 }
 
 .dashboard-page-right .header{
-    padding: 0px 4px 0px 13px;
+    padding: 9px 9px 3px 15px;
+    background-color: var(--color-f3f3f3);
+    height: 5%;
+
 }
 
 .dashboard-page-right input,select {
@@ -125,9 +129,7 @@ html,body {
 
 .dashboard-page-right {
     width: calc(100% - 200px);
-    background-color: var(--color-f3f3f3);
     color: #15306b;
-    padding: 7px;
     align-items: center;
     justify-content: center;
     font-style: normal;
@@ -174,7 +176,13 @@ html,body {
 
 .dashboard-page-right .new-apostil {
     background-color: #FFFFFF;
-    padding: 54px 40px 0px 112px;
+    height: 10%;
+}
+
+
+.dashboard-page-right .new-apostil .new-apostil-title {
+    padding: 0px 0px 0px 120px;
+    margin-top: 2%;
 }
 
 .dashboard-page-right .new-apostil-user {
@@ -272,7 +280,7 @@ html,body {
     color: #FFFFFF;
 }
 
-.dashboard-page-right .new-apostil-create input{
+.dashboard-page-right .new-apostil-create input ,select{
     height: 87%;
     width: 80%;
     font-size: 13px;
@@ -351,16 +359,33 @@ html,body {
     width: 93.75%;
 }
 
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #f3f3f3;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #15306b;
+    border-radius: 10px;
+}
+
 .dashboard-page-right .new-apostil-create .muraciet-eden-shexs{
-    background-color: var(--color-f3f3f3);
     width: 100%;
-    height: 61px;
-    padding: 22px 60px;
     font-size: 16px;
+    margin-top: 14px;
+    margin-bottom: 5%;
+    background-color: var(--color-f3f3f3);
     color: var(--color-15306b);
     margin-right: 0 !important;
     margin-left: 0 !important;
-    margin-top: 9px;
+}
+
+.dashboard-page-right .new-apostil-create .muraciet-eden-shexs .col-md-11{
+    padding: 25px 30px;
 }
 
 .dashboard-page-right .new-apostil-create .bashliq{
@@ -374,9 +399,15 @@ html,body {
     padding: 1% 0% 0% 10%;
 }
 
+.apostil-form {
+    max-height: 85%;
+    overflow-y: auto;
+}
+
 .dashboard-page-right .new-apostil-create .add-muraciet-eden-shexs {
     padding: 0px;
-    text-align: end;
+    text-align: center;
+    padding: 8px 30px;
     margin-top: -6px;
 }
 
@@ -391,6 +422,7 @@ html,body {
 .dashboard-page-right .save-button {
     text-align: center;
     font-size: 10px;
+    margin-top: 2%;
 }
 
 .dashboard-page-right .save-button img {
@@ -411,13 +443,20 @@ html,body {
 }
 
 .btn-header-container {
-    padding: 0px 40px;
+    padding: 0px 10%;
 }
 
-.search-bar input,select {
+.search-bar input {
     width: 77%;
     padding: 0px 13px;
-    height: 36px;
+    height: 45%;
+    font-size: 14px;
+}
+
+.search-bar select {
+    width: 77%;
+    padding: 0px 13px;
+    height: 45%;
     font-size: 14px;
 }
 
