@@ -68,6 +68,10 @@ html,body {
     margin-top: -3px;
 }
 
+.dashboard-page-right .modal-dialog{
+    max-width: 600px;
+}
+
 .new-apostil-user .close-modal a {
     float: right;
 }
@@ -77,10 +81,10 @@ html,body {
     height: 5%;
 }
 .dashboard-page-right .header .col-md-11 {
-    padding: 13px 0px 4px 40px
+    padding: 0.6% 0.6% 0.6% 2.6%;
 }
 .dashboard-page-right .header .col-md-1 {
-    padding: 13px 16px 4px 0px
+    padding: 0.6% 0.6% 0.6% 0
 }
 
 .dashboard-page-right input,select {
@@ -175,7 +179,15 @@ html,body {
 
 .dashboard-page-right .search-bar {
     background-color: #FFFFFF;
-    padding: 16px 12px 4px;
+    border: 1px solid var(--color-f3f3f3)
+}
+
+.dashboard-page-right .search-bar .buttons {
+    padding: 16px 0px 10px 36px;
+}
+
+.dashboard-page-right .search-bar .buttons-and-icons{
+    padding: 16px 30px 10px 33px;
 }
 
 .dashboard-page-right .new-apostil {
@@ -183,6 +195,23 @@ html,body {
     height: 10%;
 }
 
+.line {
+    width: 90%;
+    border: 1px solid  var(--color-f3f3f3);
+    margin-bottom: 1%;
+    margin-left: 9.5%;
+}
+
+select option {
+    font-size: 18px;
+    color: #8e8e8e;
+    background-color: var(--color-f3f3f3);
+}
+
+ select option:hover {
+    color: #FFFFFF;
+    background-color: var(--color-15306b) !important;
+}
 
 .dashboard-page-right .new-apostil .new-apostil-title {
     padding: 0px 0px 0px 120px;
@@ -313,6 +342,14 @@ html,body {
 .dashboard-page-right .new-apostil-user .vetendashligi {
     width: 31%;
 }
+
+.dashboard-page-right .new-apostil-user .qohumluq-derecesi {
+    width: 31%;
+}
+
+.dashboard-page-right .new-apostil-user .vezifesi {
+    width: 31%;
+}
 .dashboard-page-right select *
 {
     border-radius: 15px;
@@ -377,11 +414,14 @@ html,body {
     border-radius: 10px;
 }
 
+.bottom-page {
+    margin-bottom: 5%;
+}
+
 .dashboard-page-right .new-apostil-create .muraciet-eden-shexs{
     width: 100%;
     font-size: 16px;
     margin-top: 14px;
-    margin-bottom: 5%;
     background-color: var(--color-f3f3f3);
     color: var(--color-15306b);
     margin-right: 0 !important;
@@ -427,6 +467,61 @@ html,body {
     text-align: center;
     font-size: 10px;
     margin-top: 2%;
+    outline: none;
+}
+
+.other-filter {
+    padding: 16px 30px 10px 33px;
+    border-top: 2px solid var(--color-f3f3f3);
+}
+
+input {
+    outline: none;
+}
+
+ button {
+    border: 0;
+    background-color:#FFFFFF;
+    outline: none;
+}
+
+.btn-header button {
+    outline: none;
+}
+
+.dashboard-page-right .save-apostil-user {
+    text-align: center;
+    font-size: 10px;
+    outline: none;
+}
+
+.dashboard-page-right .modal-header {
+    border-bottom: 0;
+}
+
+.dashboard-page-right .modal-footer {
+    border-top: 0;
+}
+
+.dashboard-page-right .modal-footer .accept {
+    border: 0;
+    background-color: var(--color-15306b);
+    line-height: 1.3;
+    width: 17%;
+    border-radius: 0;
+}
+
+.dashboard-page-right .modal-content {
+    text-align: center;
+}
+
+.dashboard-page-right .close-delete-modal {
+    padding: 1rem 1rem;
+    margin: -1rem -1rem -1rem auto;
+}
+
+.dashboard-page-right .close-delete-modal img {
+    width: 16px;
 }
 
 .dashboard-page-right .save-button img {
@@ -450,18 +545,57 @@ html,body {
     padding: 0px 10%;
 }
 
-.search-bar input {
-    width: 77%;
-    padding: 0px 13px;
-    height: 45%;
-    font-size: 14px;
+.search-bar .buttons input {
+    height: 74%;
+    width: 80%;
+    font-size: 13px;
+    padding: 0px 17px;
 }
 
-.search-bar select {
-    width: 77%;
-    padding: 0px 13px;
-    height: 45%;
-    font-size: 14px;
+.search-bar .other-filter input {
+    height: 74%;
+    width: 80%;
+    font-size: 13px;
+    padding: 0px 17px;
+}
+
+.search-bar .other-filter .col-md-4 {
+    flex: 0 0 27%;
+    max-width: 27%;
+}
+
+.search-bar .other-filter .col-md-3 {
+    flex: 0 0 19.9%;
+    max-width: 19.9%;
+}
+
+.active {
+    display: show;
+}
+
+.other-filter {
+    display: none;
+}
+
+.search-bar .other-filter select {
+    height: 74%;
+    width: 80%;
+    font-size: 13px;
+    padding: 0px 17px;
+}
+
+.search-bar .buttons-and-icons input {
+    height: 65%;
+    width: 80%;
+    font-size: 13px;
+    padding: 0px 17px;
+}
+
+.search-bar .buttons-and-icons select {
+    height: 65%;
+    width: 80%;
+    font-size: 13px;
+    padding: 0px 17px;
 }
 
 select {
@@ -535,6 +669,105 @@ input:focus {
     background-repeat:no-repeat;
     background-position: 11px 9px;
     padding: 4% 4% 4% 10%;
+}
+
+.error {
+    color: red;
+}
+
+.apostil-documents button {
+    border: 0;
+    background-color: var(--color-f3f3f3);
+}
+
+.apostil-documents thead {
+
+    border-top: 2px solid var(--color-15306b);
+    border-bottom: 3px solid var(--color-15306b);
+}
+
+.apostil-documents  {
+    background-color: var(--color-f3f3f3);
+}
+.muraciet-eden-shexsler {
+    margin-top: 1%;
+    border: 1px #15306b;
+    border-style: solid none;
+    width: 100%;
+    display: none;
+    background-color: #f3f3f3;
+    margin-left: 0%;
+}
+
+.apostil-documents input[type=checkbox] {
+    box-shadow: 0px 0px 0px 1px #15306b;
+}
+
+.selected-all-th {
+    padding: 0px 0px 18px 11px !important;
+}
+
+.mur-eden-shexs {
+    width: 100%;
+    background-color: #f3f3f3;
+    margin-left: 0%;
+}
+
+.mur-eden-shexs h6 {
+    width: 90%;
+    word-wrap: break-word;
+}
+
+.mur-eden-shexs  .col-md-3 {
+    padding: 15px 0px 2px 31px
+}
+
+.accepted {
+    display: none;
+}
+
+.export {
+    display: none;
+}
+
+.mur-eden-shexs  .col-md-2 {
+    padding:15px 0px 2px 31px
+}
+
+.mur-eden-shexs  .col-md-1 {
+    padding:7px 0px 2px 0px;
+}
+
+.apostil-documents  .col-md-2 {
+    padding: 10px 0px 0px 45px;
+}
+
+.apostil-documents  .col-md-1 {
+    padding: 10px 0px 0px 47px;
+}
+
+.apostil-documents  .col-md-3 {
+   padding: 10px 0px 0px 40px;;
+}
+
+.muraciet-eden-shexsler .col-md-3 {
+    padding: 20px 0px 15px 31px;
+}
+
+.apostil-documents-list .col-md-3 {
+    padding: 20px 0px 15px 31px;
+}
+
+.apostil-documents-list .col-md-2 {
+    padding: 20px 0px 15px 31px;
+}
+
+.apostil-documents-list .col-md-1 {
+    padding: 20px 0px 15px 31px;
+}
+
+.apostil-documents-list .col-md-4 {
+    padding: 20px 0px 15px 31px;
 }
 
 .login-center .login {

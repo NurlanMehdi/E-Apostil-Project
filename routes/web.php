@@ -14,9 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => 'auth:web'],function (){
-    Route::view('/', 'layouts/dashboard')->name('dashboard');
-    Route::view('/add-apostil', 'layouts/addApostil')->name('add.apostil');
+    Route::get('/', [App\Http\Controllers\ApostilController::class,'dashboard'])->name('dashboard');
+    Route::get('/add-apostil', [App\Http\Controllers\ApostilController::class,'addApostil'])->name('add.apostil');
+    Route::get('data/user-types/{id}', [App\Http\Controllers\ApostilController::class,'getParticipantUserTypes'])->name('data.user.types');
+    Route::get('data/data-apostil-documents/{data}', [App\Http\Controllers\ApostilController::class,'getApostilDocuments'])->name('data.apostil.documents');
+    Route::post('apostil-create', [App\Http\Controllers\ApostilController::class,'createApostil'])->name('apostil.submit');
+    Route::get('apostil-remove-document/{id}', [App\Http\Controllers\ApostilController::class,'deleteApostil'])->name('apostil.remove.document');
 });
+
 
 Route::view('/login', 'auth/login')->name('login')->middleware('guest');
 Route::post('/login', [App\Http\Controllers\LoginController::class,'handleLogin'])->name('login.handle')->middleware('guest');
