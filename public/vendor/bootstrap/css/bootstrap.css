@@ -6077,7 +6077,6 @@ a.close.disabled {
 
 .modal-footer {
   display: -ms-flexbox;
-  display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   -ms-flex-align: center;
