@@ -68,9 +68,6 @@ html,body {
     margin-top: -3px;
 }
 
-.dashboard-page-right .modal-dialog{
-    max-width: 600px;
-}
 
 .new-apostil-user .close-modal a {
     float: right;
@@ -511,7 +508,7 @@ input {
     border-radius: 0;
 }
 
-.dashboard-page-right .modal-content {
+.dashboard-page-right .delete-modal-document {
     text-align: center;
 }
 
