@@ -12,4 +12,6 @@ class ApostilUser extends Model
     protected $table = "apostil_users";
 
     protected $guarded = [];
+
+    public $timestamps = false;
 }

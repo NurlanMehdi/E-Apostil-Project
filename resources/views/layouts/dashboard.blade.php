@@ -47,7 +47,7 @@
                             <h6>Sil</h6>
                         </div>
                         <div class="col-md-3 btn-header">
-                            <a href="{{route('add.apostil')}}"><img src="{{asset('files/icons/plus.png')}}"></a>
+                            <a href="{{route('add.apostil',0)}}"><img src="{{asset('files/icons/plus.png')}}"></a>
                             </br>
                             <h6>Yeni</h6>
                         </div>
@@ -56,7 +56,7 @@
             </div>
         </div>
         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog delete-all-selected-document" role="document">
                 <div class="modal-content delete-modal-document">
                     <div class="modal-header">
 
@@ -210,38 +210,25 @@
 
 
                 data = JSON.stringify(data);
-                console.log(data)
                 loadApostilDocuments(data)
             })
 
             $('.slected-all').click(function () {
                 if (this.checked == true) {
                     $('.selected-doc').prop('checked', true)
+                    $('.delete-all-document').attr('data-toggle', 'modal')
                     $('.apostil-documents tbody').css('background-color', '#ffffff')
                     $('.apostil-documents button').css('background-color', '#ffffff')
                 } else {
                     $('.selected-doc').prop('checked', false)
+                    $('.delete-all-document').attr('data-toggle', '')
                     $('.apostil-documents tbody').css('background-color', '#f3f3f3')
                     $('.apostil-documents button').css('background-color', '#f3f3f3')
                 }
             });
 
             $(document).on('click', '.selected-doc', function () {
-                $('.delete-all-document').attr('data-toggle','modal')
-                console.log($(this).attr('checked'));
-
-                // if(checked == true){
-                //     $(this).parents('tr').css('background-color','#ffffff')
-                //     $(this).parents('tr button').css('background-color','#ffffff')
-                // }else{
-                //     $(this).parents('tr').css('background-color','#f3f3f3')
-                //     $(this).parents('tr button').css('background-color','#f3f3f3')
-                // }
-            });
-
-            $().change(function () {
-                console.log($(this).attr('checked'))
-
+                $('.delete-all-document').attr('data-toggle', 'modal')
             });
 
             loadApostilDocuments()
@@ -295,10 +282,12 @@
             }
 
             $(document).on('click', '.remove-doc', function () {
+                var data = {};
                 let docId = $(this).closest('tr').attr('id');
+                data[docId] = parseInt(docId);
                 let url = "{{route('apostil.remove.document',':id')}}";
-
-                url = url.replace(':id', docId);
+                data = JSON.stringify(data);
+                url = url.replace(':id', data);
 
                 $.ajax({
                     url: url,
@@ -310,30 +299,35 @@
                 })
             })
 
+            $(document).on('click', '.edit-doc', function () {
+                let id = $(this).closest('tr').attr('id');
+                let url = "{{route('add.apostil',':id')}}";
+
+                url = url.replace(':id', id);
+                window.location.href=url;
+            })
+
             $(document).on('click', '.accept', function () {
                 var data = {};
-                $('.selected-doc:checked' +
-                    '').each(function () {
-                    var id = $(this).parents('tr').attr('id');
-                    data[id] = parseInt(id);
+                $('.delete-all-selected-document tr').each(function () {
+
+                    data[$(this).attr('id')] = parseInt($(this).attr('id'));
                 });
 
-               // data = JSON.stringify(data);
+                let url = "{{route('apostil.remove.document',':id')}}";
+                data = JSON.stringify(data);
+                url = url.replace(':id', data);
 
-
-                {{--let docId = $(this).closest('tr').attr('id');--}}
-                {{--let url = "{{route('apostil.remove.document',':id')}}";--}}
-
-                {{--url = url.replace(':id', docId);--}}
-
-                {{--$.ajax({--}}
-                {{--    url: url,--}}
-                {{--    type: 'GET',--}}
-                {{--    dataType: 'JSON',--}}
-                {{--    success: function (response) {--}}
-                {{--        $('#' + docId).remove();--}}
-                {{--    }--}}
-                {{--})--}}
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    dataType: 'JSON',
+                    success: function (response) {
+                        $('.close-delete-modal').trigger('click')
+                        $('.slected-all').prop('checked', false)
+                        $('.selected-doc:checked').parents('tr').remove();
+                    }
+                })
             })
         })
 

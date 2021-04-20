@@ -15,11 +15,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'auth:web'],function (){
     Route::get('/', [App\Http\Controllers\ApostilController::class,'dashboard'])->name('dashboard');
-    Route::get('/add-apostil', [App\Http\Controllers\ApostilController::class,'addApostil'])->name('add.apostil');
+    Route::get('/add-apostil/{id}', [App\Http\Controllers\ApostilController::class,'addApostil'])->name('add.apostil');
     Route::get('data/user-types/{id}', [App\Http\Controllers\ApostilController::class,'getParticipantUserTypes'])->name('data.user.types');
     Route::get('data/data-apostil-documents/{data}', [App\Http\Controllers\ApostilController::class,'getApostilDocuments'])->name('data.apostil.documents');
     Route::post('apostil-create', [App\Http\Controllers\ApostilController::class,'createApostil'])->name('apostil.submit');
+    Route::post('apostil-edit/{id}', [App\Http\Controllers\ApostilController::class,'editApostil'])->name('apostil.edit');
     Route::get('apostil-remove-document/{id}', [App\Http\Controllers\ApostilController::class,'deleteApostil'])->name('apostil.remove.document');
+    Route::post('apostil-user-create', [App\Http\Controllers\ApostilUserController::class,'createApostilUser'])->name('apostil.user.submit');
 });
 
 
