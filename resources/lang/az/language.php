@@ -24,6 +24,7 @@ return [
     'qeydler' => 'Qeydlər',
     'elaveQeydler' => 'Əlavə qeydlər',
     'metnDaxilEdin' => 'Mətn daxil edin',
+    'nomreDaxilEdin' => 'Nömrə daxil edin',
     'imzalayaninVezifesi' => 'İmzalayanın vəzifəsi',
     'imzalayaninVezifesiEn' => 'İmzalayanın vəzifəsi (English)',
     'vezife' => 'Vəzifə',
@@ -63,7 +64,7 @@ return [
     'ishtirakchi' => 'İştirakçı',
     'FizikiVeyaHuquqiShexsinAdi' => 'Fiziki (Hüquqi) şəxsin adı',
     'export' => 'Çap et',
-    'accepted' => 'Təsdiq Et',
+    'tesdiqEt' => 'Təsdiq Et',
     'apostilin_nomresi' => 'Apostilin nömrəsi',
     'status' => 'Status',
     'statusTesdiqOlunmayib' => 'Təsdiq olunmayıb',
@@ -74,4 +75,5 @@ return [
     'senedinMexsusOlduguShexs' => 'Sənədin məxsus olduğu şəxs',
     'senediTeqdimEdenShexs' => 'Sənədi təqdim edən şəxs',
     'accepted' => 'Bəli',
+    'apostilEdit' => 'Apostili Tənzimləmə',
 ];

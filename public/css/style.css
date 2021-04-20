@@ -116,6 +116,10 @@ html,body {
     line-height: normal;
 }
 
+.delete-all-selected-document {
+    max-width: 600px;
+}
+
 .dashboard-page-left .emblem-text h6{
     margin-top: 25px;
     color: #ffffff;
@@ -442,7 +446,7 @@ select option {
 
 .apostil-form {
     max-height: 85%;
-    overflow-y: auto;
+    overflow-y: scroll;
 }
 
 .dashboard-page-right .new-apostil-create .add-muraciet-eden-shexs {
@@ -675,6 +679,21 @@ input:focus {
 .apostil-documents button {
     border: 0;
     background-color: var(--color-f3f3f3);
+}
+
+#createApostilUser .error {
+    font-size: 0.7rem;
+    width: 108%;
+    margin-bottom: 14px;
+    color: red;
+}
+
+@media print {
+    body {-webkit-print-color-adjust: exact !important; }
+}
+
+.apostil-documents thead th h5 {
+    color: var(--color-15306b);
 }
 
 .apostil-documents thead {

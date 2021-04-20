@@ -15,19 +15,19 @@ class ApostilUser extends Migration
     {
         Schema::create('apostil_users', function (Blueprint $table) {
             $table->id();
-            $table->integer('apostil_id')->unique();
+            $table->integer('apostil_id')->unique()->nullable();
             $table->integer('apply_user_type');
             $table->integer('apply_participant');
-            $table->string('doc_owner_name',50);
-            $table->string('doc_owner_lastname',50);
-            $table->string('doc_owner_fathername',50);
-            $table->integer('relationship_id');
-            $table->integer('power_of_attorney_number');
-            $table->integer('letter_number');
+            $table->string('doc_owner_name',50)->nullable();
+            $table->string('doc_owner_lastname',50)->nullable();
+            $table->string('doc_owner_fathername',50)->nullable();
+            $table->integer('relationship_id')->nullable();
+            $table->integer('power_of_attorney_number')->nullable();
+            $table->integer('letter_number')->nullable();
             $table->timestamp('issue_date')->nullable();
-            $table->string('legal_user_name',20);
-            $table->string('voen',50);
-            $table->string('position');
+            $table->string('legal_user_name',20)->nullable();
+            $table->string('voen',50)->nullable();
+            $table->string('position')->nullable();
             $table->integer('doc_type_id');
             $table->string('shv_series',4);
             $table->integer('shv_number')->length(8);

@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{{asset('vendor/bootstrap/css/bootstrap-reboot.css')}}" />
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/print.min.css') }}">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;400&display=swap" rel="stylesheet">
@@ -93,7 +94,8 @@
 <script src="{{asset('vendor/jQuery/jquery-3.5.1.js')}}"></script>
 <script src="{{asset('vendor/popper/popper.min.js')}}"></script>
 <script src="{{asset('vendor/bootstrap/js/bootstrap.js')}}"></script>
-<script src="{{asset('js/main.js')}}"></script>
+<script src="{{asset('vendor/bootstrap/js/bootstrap.js')}}"></script>
+<script src="{{asset('js/print.min.js')}}"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
 @yield('javascript')
