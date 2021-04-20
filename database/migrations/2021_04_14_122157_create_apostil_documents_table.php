@@ -32,6 +32,10 @@ class CreateApostilDocumentsTable extends Migration
             $table->string('rs_document_name_en',50);
             $table->string('rs_short_note',500);
             $table->integer('status')->default(0);
+
+
+            $table->unsignedBigInteger('apostil_user_id');
+
             $table->integer('is_deleted')->default(0);
         });
     }

@@ -15,7 +15,7 @@ class ApostilController extends Controller
         $senedinTipi = AllSelectBox::where('key','senedin_tipi')->get();
         $qohumluqDerecesi = AllSelectBox::where('key','qohumluq_derecesi')->get();
         $apostilDocument = [];
-        if ($id > 0){
+        if ($id !== "new"){
             $apostilDocument = ApostilDocument::where('id',$id)->first();
             $apostilDocument['apostil_signing_user_name'] = ImzalayanShexs::select('name')->where('id',$apostilDocument->apostil_signing_user_id)->first();
         }
@@ -99,6 +99,8 @@ class ApostilController extends Controller
             'rs_document_name' => 'required|string|max:50',
             'rs_document_name_en' => 'required|string|max:50',
             'rs_short_note' => 'required|string|max:500',
+
+            'apply_user_id' => 'required|integer|exists:apostil_users,id'
         ]);
 
         if ($validator->fails()){
@@ -123,6 +125,9 @@ class ApostilController extends Controller
             $apostilDocument->rs_document_name_en=request()->get('rs_document_name_en');
             $apostilDocument->rs_short_note=request()->get('rs_short_note');
             $apostilDocument->status=request()->get('status');
+
+            $apostilDocument->apostil_user_id=request()->get('apply_user_id');
+
             $apostilDocument->save();
 
             return $this->dashboard();
