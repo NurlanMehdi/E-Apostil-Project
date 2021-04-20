@@ -47,7 +47,7 @@
                             <h6>Sil</h6>
                         </div>
                         <div class="col-md-3 btn-header">
-                            <a href="{{route('add.apostil',0)}}"><img src="{{asset('files/icons/plus.png')}}"></a>
+                            <a href="{{route('add.apostil',"new")}}"><img src="{{asset('files/icons/plus.png')}}"></a>
                             </br>
                             <h6>Yeni</h6>
                         </div>

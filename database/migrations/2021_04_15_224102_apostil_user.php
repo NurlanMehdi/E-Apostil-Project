@@ -15,7 +15,6 @@ class ApostilUser extends Migration
     {
         Schema::create('apostil_users', function (Blueprint $table) {
             $table->id();
-            $table->integer('apostil_id')->unique()->nullable();
             $table->integer('apply_user_type');
             $table->integer('apply_participant');
             $table->string('doc_owner_name',50)->nullable();
