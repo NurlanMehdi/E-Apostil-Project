@@ -21,7 +21,7 @@
                         <label class="accepted" >{{__('language.tesdiqEt')}}</label>
                     </div>
                     <div class="col-md-4">
-                        <a class="export"  onclick="printJS('createApostil', 'html')"><img src="{{asset('files/icons/export.png')}}"></a>
+                        <a class="export" data-toggle="modal" data-target=".export-modal"><img src="{{asset('files/icons/export.png')}}"></a>
                         </br>
                         <label class="export">{{__('language.export')}}</label>
                     </div>
@@ -539,12 +539,98 @@
                 </div>
 
             </form>
+            <div class="modal fade export-modal" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="row export-modal-background">
+                            <div class="col-md-6 pdf-viewer">
+                                <div class="row pdf-apostille">
+                                    <div class="col-md-12 apostille-title"><h3>APOSTILLE</h3></div>
+                                    <div class="col-md-12 apostill-convetion"><label>(Convention de La Haye du 5 octobre 1961)</br>(5 oktyabr 1961-ci il Haaqa Konvensiyası)</label></div>
+                                    <div class="col-md-12 country">
+                                        <div class="row">
+                                            <div class="col-md-1 sira">1</div>
+                                            <div class="col-md-11 info"><h6>Azerbaycan Respublikası / Respublic of Azerbaijan</br><label>Ölkə / Country</label></h6></div>
+                                            <div class="col-md-12 space-with-title"><h5>Hazırki rəsmi sənəd / This public document</h5></div>
+                                            <div class="col-md-1 sira">2</div>
+                                            <div class="col-md-11 info"><h6>Məmmədov / Mammadov</br><label>İmzalayan (soyadı) / Has been signed by (surname)</label></h6></div>
+                                            <div class="col-md-1 sira">3</div>
+                                            <div class="col-md-11 info"><h6>Qardaş / Brother</br><label>Hansı qismdə çıxış etmişdir / Acting in the capacity of</label></h6></div>
+                                            <div class="col-md-1 sira">4</div>
+                                            <div class="col-md-11 info"><h6>Şahin Məmmədov / Shahin Mammadov</br><label>Möhürün, ştampın sahibi / Bears the seal, stamp of</label></h6></div>
+                                            <div class="col-md-12 space-with-title"><h5>Təsdiq edilmişdir / Certiﬁed</h5></div>
+                                            <div class="col-md-1 sira">5</div>
+                                            <div class="col-md-5 info"><h6>Bakı / Baku</br><label>Şəhər / At</label></h6></div>
+                                            <div class="col-md-1 sira">6</div>
+                                            <div class="col-md-5 info"><h6>dd.mm.yyyy</br><label>Tarixdə / The</label></h6></div>
+                                            <div class="col-md-1 sira">7</div>
+                                            <div class="col-md-11 info"><h6>Xarici İşlər Nazirliyinin Konsulluq İdarəsi /</br> Consular Department of the Ministry of Foreign Afairs</br><label>Tərəﬁndən / By</label></h6></div>
+                                            <div class="col-md-1 sira">8</div>
+                                            <div class="col-md-11 info"><h6>0123456789</br><label>Nömrəli / Reg. number</label></h6></div>
+                                            <div class="col-md-1 sira">9</div>
+                                            <div class="col-md-5 info"><h6></br><label>Möhür, ştamp / Seal, stamp </label></h6></div>
+                                            <div class="col-md-1 sira">10</div>
+                                            <div class="col-md-5 info"><h6></br><label>İmza / Signature</label></h6></div>
+                                        </div>
+                                    </div>
+                                    <hr class="horizontal-line">
+                                    <div class="col-md-12 apostill-convetion"><label>Apostil sənədin mətninə şamil edilmir</br>Apostille does not relate to the content of the document</label></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 pdf-tools">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <select class="selected-pdf-viewer">
+                                            <option selected value="apostil">Çıxarış</option>
+                                            <option value="chixarish">Apostil</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12">
+                                         <div class="row pdf-buttons">
+                                             <div class="col-md-3>
+                                                 <a class="download-pdf"><img src="{{asset('files/icons/download.png')}}"></a>
+                                                 </br>
+                                                 <h6>Yüklə</h6>
+                                             </div>
+                                             <div class="col-md-3">
+                                                 <a class="export-pdf" onclick="PrintElem('pdf-apostille')"><img src="{{asset('files/icons/export.png')}}"></a>
+                                                 </br>
+                                                 <h6>Çap et</h6>
+                                             </div>
+                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
 
 
 @stop
 @section('javascript')
     <script type="text/javascript">
+
+        function PrintElem(elem)
+        {
+            var mywindow = window.open('', 'PRINT', 'height=400,width=600');
+
+            mywindow.document.write('<html><head><title>' + document.title  + '</title>');
+            mywindow.document.write('</head><body >');
+            mywindow.document.write('<h1>' + document.title  + '</h1>');
+            mywindow.document.write(document.getElementById(elem).innerHTML);
+            mywindow.document.write('</body></html>');
+
+            mywindow.document.close(); // necessary for IE >= 10
+            mywindow.focus(); // necessary for IE >= 10*/
+
+            mywindow.print();
+            mywindow.close();
+
+            return true;
+        }
 
         loadUserTypes(2)
         //
