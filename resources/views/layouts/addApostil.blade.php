@@ -20,9 +20,8 @@
                     </br>
                     <label class="accepted">{{__('language.tesdiqEt')}}</label>
                 </div>
-                <div style="display: none" class="col-md-4">
-                    <a  class="export" onclick="printJS('createApostil', 'html')"><img
-                            src="{{asset('files/icons/export.png')}}"></a>
+                <div class="col-md-4">
+                    <a class="export" data-toggle="modal" data-target=".export-modal"><img src="{{asset('files/icons/export.png')}}"></a>
                     </br>
                     <label class="export">{{__('language.export')}}</label>
                 </div>
@@ -657,25 +656,115 @@
             </div>
 
         </form>
+        <div class="modal fade export-modal" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="row export-modal-background">
+                        <div class="col-md-6 pdf-viewer">
+                            <div class="row pdf-apostille">
+                                <div class="col-md-12 apostille-title"><h3>APOSTILLE</h3></div>
+                                <div class="col-md-12 apostill-convetion"><label>(Convention de La Haye du 5 octobre 1961)</br>(5 oktyabr 1961-ci il Haaqa Konvensiyası)</label></div>
+                                <div class="col-md-12 country">
+                                    <div class="row">
+                                        <div class="col-md-1 sira">1</div>
+                                        <div class="col-md-11 info"><h6>Azerbaycan Respublikası / Respublic of Azerbaijan</br><label>Ölkə / Country</label></h6></div>
+                                        <div class="col-md-12 space-with-title"><h5>Hazırki rəsmi sənəd / This public document</h5></div>
+                                        <div class="col-md-1 sira">2</div>
+                                        <div class="col-md-11 info"><h6>Məmmədov / Mammadov</br><label>İmzalayan (soyadı) / Has been signed by (surname)</label></h6></div>
+                                        <div class="col-md-1 sira">3</div>
+                                        <div class="col-md-11 info"><h6>Qardaş / Brother</br><label>Hansı qismdə çıxış etmişdir / Acting in the capacity of</label></h6></div>
+                                        <div class="col-md-1 sira">4</div>
+                                        <div class="col-md-11 info"><h6>Şahin Məmmədov / Shahin Mammadov</br><label>Möhürün, ştampın sahibi / Bears the seal, stamp of</label></h6></div>
+                                        <div class="col-md-12 space-with-title"><h5>Təsdiq edilmişdir / Certiﬁed</h5></div>
+                                        <div class="col-md-1 sira">5</div>
+                                        <div class="col-md-5 info"><h6>Bakı / Baku</br><label>Şəhər / At</label></h6></div>
+                                        <div class="col-md-1 sira">6</div>
+                                        <div class="col-md-5 info"><h6>dd.mm.yyyy</br><label>Tarixdə / The</label></h6></div>
+                                        <div class="col-md-1 sira">7</div>
+                                        <div class="col-md-11 info"><h6>Xarici İşlər Nazirliyinin Konsulluq İdarəsi /</br> Consular Department of the Ministry of Foreign Afairs</br><label>Tərəﬁndən / By</label></h6></div>
+                                        <div class="col-md-1 sira">8</div>
+                                        <div class="col-md-11 info"><h6>0123456789</br><label>Nömrəli / Reg. number</label></h6></div>
+                                        <div class="col-md-1 sira">9</div>
+                                        <div class="col-md-5 info"><h6></br><label>Möhür, ştamp / Seal, stamp </label></h6></div>
+                                        <div class="col-md-1 sira">10</div>
+                                        <div class="col-md-5 info"><h6></br><label>İmza / Signature</label></h6></div>
+                                    </div>
+                                </div>
+                                <hr class="horizontal-line">
+                                <div class="col-md-12 apostill-convetion"><label>Apostil sənədin mətninə şamil edilmir</br>Apostille does not relate to the content of the document</label></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 pdf-tools">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <select class="selected-pdf-viewer">
+                                        <option selected value="chixarish">Çıxarış</option>
+                                        <option value="apostil">Apostil</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="row pdf-buttons">
+                                        <div class="col-md-3>
+                                                 <a class="download-pdf"><img src="{{asset('files/icons/download.png')}}"></a>
+                                        </br>
+                                        <h6>Yüklə</h6>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <a class="export-pdf"><img src="{{asset('files/icons/export.png')}}"></a>
+                                        </br>
+                                        <h6>Çap et</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
     </div>
 
 
 @stop
 @section('javascript')
+    <script src="{{asset('js/printThis.js')}}"></script>
     <script type="text/javascript">
 
         loadUserTypes(2)
 
-        function printdiv(printdivname) {
-            var headstr = "<html><head><title>Booking Details</title></head><body>";
-            var footstr = "</body>";
-            var newstr = document.getElementById(printdivname).innerHTML;
-            var oldstr = document.body.innerHTML;
-            document.body.innerHTML = headstr + newstr + footstr;
-            window.print();
-            document.body.innerHTML = oldstr;
-            return false;
-        }
+        $('.export-pdf').on('click',function(){
+            var id = 'pdf-chixarish';
+            if($('.selected-pdf-viewer option:selected').val() == 'chixarish'){
+                id = 'pdf-chixarish';
+            }else {
+                id = 'pdf-apostille'
+            }
+
+            $("#"+id).printThis({
+                debug: false,               // show the iframe for debugging
+                importCSS: true,            // import parent page css
+                importStyle: false,         // import style tags
+                printContainer: true,       // print outer container/$.selector
+                loadCSS: "{{asset('css/style.css')}}",                // path to additional css file - use an array [] for multiple
+                pageTitle: "",              // add title to print page
+                removeInline: false,        // remove inline styles from print elements
+                removeInlineSelector: "*",  // custom selectors to filter inline styles. removeInline must be true
+                printDelay: 333,            // variable print delay
+                header: null,               // prefix to html
+                footer: null,               // postfix to html
+                base: false,                // preserve the BASE tag or accept a string for the URL
+                formValues: true,           // preserve input/form values
+                canvas: false,              // copy canvas content
+                doctypeString: '...',       // enter a different doctype for older markup
+                removeScripts: false,       // remove script tags from print content
+                copyTagClasses: false,      // copy classes from the html & body tag
+                beforePrintEvent: null,     // function for printEvent in iframe
+                beforePrint: null,          // function called before iframe is filled
+                afterPrint: null            // function called before iframe is removed
+            });
+        })
+
 
 
         $('.save-button .save').on('click', function (e) {

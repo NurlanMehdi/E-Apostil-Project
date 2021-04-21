@@ -95,7 +95,7 @@
 <script src="{{asset('vendor/popper/popper.min.js')}}"></script>
 <script src="{{asset('vendor/bootstrap/js/bootstrap.js')}}"></script>
 <script src="{{asset('vendor/bootstrap/js/bootstrap.js')}}"></script>
-<script src="{{asset('js/print.min.js')}}"></script>
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
 @yield('javascript')

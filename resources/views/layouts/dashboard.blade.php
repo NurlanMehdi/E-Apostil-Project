@@ -146,7 +146,9 @@
         <tr>
             <th></th>
             <th scope="col" class="selected-all-th"><input type="checkbox" class="slected-all" name="selected-all"></th>
-            <th scope="col"><h5>{{__('language.tarix')}}</h5></th>
+            <th scope="col">
+                <h5 style="cursor: pointer;" class="order-date"><img src="{{asset('files/icons/2-layers.png')}}">{{__('language.tarix')}}</h5>
+            </th>
             <th scope="col"><h5>{{__('language.apostilin_nomresi')}}</h5></th>
             <th scope="col"><h5>{{__('language.status')}}</h5></th>
             <th scope="col"><h5>{{__('language.qisaMezmunu')}}</h5></th>
@@ -242,6 +244,15 @@
 
                 data = JSON.stringify(data);
                 loadApostilDocuments(data, 'delete-modal')
+            })
+
+            $('.order-date').on('click',function (){
+                var col=$(this).index()
+                $("table").sortChildren(function(A,B){
+                    var a=$(A).find("td").eq(col).text(),
+                        b=$(B).find("td").eq(col).text();
+                    return a<b?-1:a>b?+1:0
+                },1,0)
             })
 
             function loadApostilDocuments(data, key) {
