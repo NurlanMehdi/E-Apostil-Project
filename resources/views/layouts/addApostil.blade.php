@@ -20,8 +20,8 @@
                     </br>
                     <label class="accepted">{{__('language.tesdiqEt')}}</label>
                 </div>
-                <div class="col-md-4">
-                    <a class="export" onclick="printJS('createApostil', 'html')"><img
+                <div style="display: none" class="col-md-4">
+                    <a  class="export" onclick="printJS('createApostil', 'html')"><img
                             src="{{asset('files/icons/export.png')}}"></a>
                     </br>
                     <label class="export">{{__('language.export')}}</label>
@@ -246,12 +246,14 @@
                 <div class="row muraciet-eden-shexs">
                     <div class="col-md-11"> {{__('language.muracietEdenShexs')}}</div>
                     <div class="col-md-1 add-muraciet-eden-shexs">
-                        <a class="btn" data-toggle="modal" data-target=".bd-example-modal-xl"><img
-                                src="{{asset('files/icons/plus.png')}}"></a>
-                        <h6>Yeni</h6>
+                        @if($documentId == 'new')
+                            <a class="btn" data-toggle="modal" data-target=".bd-example-modal-xl"><img
+                                        src="{{asset('files/icons/plus.png')}}"></a>
+                            <h6>Yeni</h6>
+                        @endif
                     </div>
                 </div>
-                <div class="row muraciet-eden-shexsler">
+                <div style="display: {{($documentId != 'new') ? 'flex' : 'none'}}" class="row muraciet-eden-shexsler">
                     <div class="col-md-3">
                         <h5>{{__('language.nomre')}}</h5>
                     </div>
@@ -266,7 +268,29 @@
                     </div>
                 </div>
                 <div class="row mur-eden-shexs">
+                    @if($apostilUser != null)
+                        <div class='col-md-3'>
 
+                            <h6>{{($apostilUser->shv_series == 1) ? 'AA-' : 'AZE-'}}{{$apostilUser->shv_number}}</h6>
+                        </div>
+                        <div class='col-md-3'>
+                            <h6>{{($apostilUser->apply_user_type == 2) ? 'Hüquqi şəxs' : 'Fiziki şəxs'}}</h6>
+                        </div>
+                        <div class='col-md-3'>
+                            <h6>{{($apostilUser->apply_user_type == 2) ? $apostilUser->legal_user_name : $apostilUser->doc_owner_name .' '. $apostilUser->doc_owner_lastname  .' '. $apostilUser->doc_owner_fathername }}</h6>
+                        </div>
+                        <div class='col-md-2'>
+                            <h6>{{$apostilUser->other_notes}}</h6>
+                        </div>
+                        <div class='col-md-1'>
+                            <button type='button' class='btn' data-toggle='modal' data-target='.bd-example-modal-xl' style='border: 0;padding: 0px 15px 12px 10px;height: 71%;'>
+                                <img src='{{asset('files/icons/edit.png')}}'>
+                            </button>
+                            <button type='button' class='remove-user' style='border: 0;padding: 0px 15px 12px 10px;height: 71%;'>
+                                <img src='{{asset('files/icons/x.png')}}'>
+                            </button>
+                        </div>
+                    @endif
                 </div>
                 <div class="bottom-page"></div>
             </div>
@@ -290,7 +314,7 @@
                                 <div class="col-md-10 new-apostil-title">
                                     <label>{{__('language.shexsHaqqindaMelumat')}}</label></div>
                                 <div class="col-md-2 save-apostil-user">
-                                    <button style="float: initial;" type="button" class="close save-apo">
+                                    <button style="float: initial;" type="button" class="save-apo">
                                         <img src="{{asset('files/icons/save.png')}}">
                                     </button>
                                     </br>
@@ -305,8 +329,18 @@
                                         <div class="col-md-3">
                                             <select name="apply_user_type" class="novu apostil-types"
                                                     placeholder="{{ __('language.ishtirakchininNovu') }}">
-                                                <option value="2">Hüquqi şəxs</option>
-                                                <option value="1">Fiziki şəxs</option>
+                                                @if($apostilUser->apply_user_type ?? '')
+                                                    @if($apostilUser->apply_user_type == 1)
+                                                        <option  value="2">Hüquqi şəxs</option>
+                                                        <option selected="selected" value="1">Fiziki şəxs</option>
+                                                    @else
+                                                        <option  selected="selected" value="2">Hüquqi şəxs</option>
+                                                        <option  value="1">Fiziki şəxs</option>
+                                                    @endif
+                                                @else
+                                                    <option  selected="selected" value="2">Hüquqi şəxs</option>
+                                                    <option  value="1">Fiziki şəxs</option>
+                                                @endif
                                             </select>
                                             @if($errors->has('apply_user_type'))
                                                 <h6 class="error">{{ $errors->first('apply_user_type') }}</h6>
@@ -446,8 +480,19 @@
                                         <div class="col-md-3 bashliq"><h6>{{__('language.svSerVeNom')}}</h6></div>
                                         <div class="col-md-2">
                                             <select class="shv-seriyasi" name="shv_series">
-                                                <option value="1">AA-</option>
-                                                <option value="2">AZE-</option>
+                                                @if($apostilUser->shv_series ?? '')
+                                                    @if($apostilUser->shv_series == 1)
+                                                        <option selected value="1">AA-</option>
+                                                        <option value="2">AZE-</option>
+                                                    @else
+                                                        <option value="1">AA-</option>
+                                                        <option selected value="2">AZE-</option>
+                                                    @endif
+                                                @else
+                                                    <option value="1">AA-</option>
+                                                    <option value="2">AZE-</option>
+                                                @endif
+
                                             </select>
                                             @if($errors->has('shv_series'))
                                                 <h6 class="error">{{ $errors->first('shv_series') }}</h6>
@@ -456,7 +501,7 @@
                                         <div class="col-md-2">
                                             <input class="shv-nomresi" name="shv_number"
                                                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                                   type="number" maxlength="8">
+                                                   type="number" value="{{$apostilUser->shv_number ?? ''}}" maxlength="8">
                                             @if($errors->has('shv_number'))
                                                 <h6 class="error">{{ $errors->first('shv_number') }}</h6>
                                             @endif
@@ -471,9 +516,8 @@
                                         <div class="col-md-3 bashliq"><h6>{{__('language.verilmeTarixi')}}</h6></div>
                                         <div class="col-md-3">
                                             <input readonly='true' name="doc_presented_date" type="text"
-                                                   name="doc_presented_date"
                                                    class="form-control datepicker-apostil verilme-tarixi"
-                                                   value="<?= date('Y-m-d') ?>">
+                                                   value="{{$apostilUser->doc_presented_date ?? date('Y-m-d') }}">
                                             @if($errors->has('doc_presented_date'))
                                                 <h6 class="error">{{ $errors->first('doc_presented_date') }}</h6>
                                             @endif
@@ -496,21 +540,21 @@
                                     <div class="row">
                                         <div class="col-md-3 bashliq"><h6>{{__('language.userNames')}}</h6></div>
                                         <div class="col-md-3">
-                                            <input name="doc_presented_name" type="text"
+                                            <input name="doc_presented_name" value="{{$apostilUser->doc_presented_name ?? ''}}" type="text"
                                                    placeholder="{{__('language.soyad')}}">
                                             @if($errors->has('doc_presented_name'))
                                                 <h6 class="error">{{ $errors->first('doc_presented_name') }}</h6>
                                             @endif
                                         </div>
                                         <div class="col-md-3">
-                                            <input name="doc_presented_lastname" type="text"
+                                            <input name="doc_presented_lastname" value="{{$apostilUser->doc_presented_lastname ?? ''}}" type="text"
                                                    placeholder="{{__('language.ad')}}">
                                             @if($errors->has('doc_presented_lastname'))
                                                 <h6 class="error">{{ $errors->first('doc_presented_lastname') }}</h6>
                                             @endif
                                         </div>
                                         <div class="col-md-3">
-                                            <input name="doc_presented_fathername" type="text"
+                                            <input name="doc_presented_fathername"  value="{{$apostilUser->doc_presented_fathername ?? ''}}" type="text"
                                                    placeholder="{{__('language.ataAdi')}}">
                                             @if($errors->has('doc_presented_fathername'))
                                                 <h6 class="error">{{ $errors->first('doc_presented_fathername') }}</h6>
@@ -524,7 +568,7 @@
                                         <div class="col-md-9">
                                             <input name="doc_presented_birtday_date" readonly='true' type="text"
                                                    class="form-control datepicker-apostil dogum-tarixi"
-                                                   value="<?= date('Y-m-d') ?>">
+                                                   value="{{$apostilUser->doc_presented_birtday_date ?? date('Y-m-d')}} ">
                                             @if($errors->has('doc_presented_birtday_date'))
                                                 <h6 class="error">{{ $errors->first('doc_presented_birtday_date') }}</h6>
                                             @endif
@@ -537,7 +581,7 @@
                                         </div>
                                         <div class="col-md-9">
                                             <input name="doc_presented_reg_address"
-                                                   placeholder="{{__('language.metnDaxilEdin')}}" type="text">
+                                                   placeholder="{{__('language.metnDaxilEdin')}}" value="{{$apostilUser->doc_presented_reg_address ?? ''}}" type="text">
                                             @if($errors->has('doc_presented_reg_address'))
                                                 <h6 class="error">{{ $errors->first('doc_presented_reg_address') }}</h6>
                                             @endif
@@ -549,8 +593,19 @@
                                         <div class="col-md-3 bashliq"><h6>{{__('language.vetendashligi')}}</h6></div>
                                         <div class="col-md-9">
                                             <select name="doc_presented_native_id" class="vetendashligi" value="-">
-                                                <option value="1">Azərbaycan vətəndaşı</option>
-                                                <option value="2">Əcnəbi</option>
+                                                @if($apostilUser->doc_presented_native_id ?? '')
+                                                    @if($apostilUser->doc_presented_native_id == 1)
+                                                        <option selected value="1">Azərbaycan vətəndaşı</option>
+                                                        <option value="2">Əcnəbi</option>
+                                                    @else
+                                                        <option  value="1">Azərbaycan vətəndaşı</option>
+                                                        <option selected value="2">Əcnəbi</option>
+                                                    @endif
+                                                @else
+                                                    <option value="1">Azərbaycan vətəndaşı</option>
+                                                    <option value="2">Əcnəbi</option>
+                                                @endif
+
                                             </select>
                                             @if($errors->has('doc_presented_native_id'))
                                                 <h6 class="error">{{ $errors->first('doc_presented_native_id') }}</h6>
@@ -563,7 +618,7 @@
                                         <div class="col-md-3 bashliq"><h6>{{__('language.elaqeTelefonu')}}</h6></div>
                                         <div class="col-md-9">
                                             <input name="doc_presented_tel" class="elaqeTelefonu"
-                                                   placeholder="{{__('language.nomreDaxilEdin')}}" type="number">
+                                                   placeholder="{{__('language.nomreDaxilEdin')}}" value="{{$apostilUser->doc_presented_tel ?? ''}}"  type="number">
                                             @if($errors->has('doc_presented_tel'))
                                                 <h6 class="error">{{ $errors->first('doc_presented_tel') }}</h6>
                                             @endif
@@ -574,7 +629,7 @@
                                     <div class="row">
                                         <div class="col-md-3 bashliq"><h6>{{__('language.ePocht')}}</h6></div>
                                         <div class="col-md-9">
-                                            <input name="doc_presented_mail" class="ePocht"
+                                            <input value="{{$apostilUser->doc_presented_mail ?? ''}}"  name="doc_presented_mail" class="ePocht"
                                                    placeholder="{{__('language.metnDaxilEdin')}}" type="text">
                                             @if($errors->has('doc_presented_mail'))
                                                 <h6 class="error">{{ $errors->first('doc_presented_mail') }}</h6>
@@ -587,7 +642,7 @@
                                     <div class="row">
                                         <div class="col-md-3 bashliq"><h6>{{__('language.qeydler')}}</h6></div>
                                         <div class="col-md-9">
-                                            <input class="other_notes" name="other_notes"
+                                            <input value="{{$apostilUser->other_notes ?? ''}}"  class="other_notes" name="other_notes"
                                                    placeholder="{{__('language.metnDaxilEdin')}}" type="text">
                                             @if($errors->has('other_notes'))
                                                 <h6 class="error">{{ $errors->first('other_notes') }}</h6>
@@ -610,22 +665,6 @@
     <script type="text/javascript">
 
         loadUserTypes(2)
-        //
-        // @media print {
-        // .myDivToPrint {
-        //         background-color: white;
-        //         height: 100%;
-        //         width: 100%;
-        //         position: fixed;
-        //         top: 0;
-        //         left: 0;
-        //         margin: 0;
-        //         padding: 15px;
-        //         font-size: 14px;
-        //         line-height: 18px;
-        //     }
-        // }
-        //
 
         function printdiv(printdivname) {
             var headstr = "<html><head><title>Booking Details</title></head><body>";
@@ -670,12 +709,16 @@
                 success: function (response) {
                     let userTypeSelect = '<option hidden disabled selected></option>';
 
+
                     response.data.map(item => (
-                        userTypeSelect += "<option name=" + item.string_id + " value=" + item.id + ">" + item.name + "</option>"
+
+                        userTypeSelect += "<option  name=" + item.string_id + " value=" + item.id + ">" + item.name + "</option>"
+
                     ))
 
                     $('.apostil-user-types').html("");
                     $('.apostil-user-types').html("<select class='ishtirakci' name='apply_participant'>" + userTypeSelect + "</select>");
+
                 }
             })
 
@@ -744,32 +787,33 @@
                         $('.new-apostil-user .close').click();
                         $('input[name="apply_user_id"]').val('');
                         $('input[name="apply_user_id"]').val(data.id);
-                        {{--$('.mur-eden-shexs').html("<div class='col-md-3'><h6>" + series +""+ number +"</h6></div><div class='col-md-3'><h6>"+apply_user_type+"</h6></div><div class='col-md-3'><h6>"+name+"</h6></div><div class='col-md-2'> <h6>"+other_notes+"</h6></div><div class='col-md-1'><button type='button' class='btn' data-toggle='modal' data-target='.bd-example-modal-xl' style='border: 0;padding: 0px 15px 12px 10px;height: 71%;'><img src='{{asset('files/icons/edit.png')}}'></button><button type='button' class='remove-user' style='border: 0;padding: 0px 15px 12px 10px;height: 71%;'><img src='{{asset('files/icons/x.png')}}'></button></div>");--}}
+                        $('.muraciet-eden-shexsler').css('display','flex');
+                        var series = $('.shv-seriyasi option:selected').text();
+                        var number = $('.shv-nomresi').val();
+                        var other_notes = $('.other_notes').val();
+                        var apply_user_type = $('.apostil-types option:selected').text();
+                        var name = '';
+                        if ($('.apostil-types').val() == 1){
+                            var fizikiShexsSoyad = $('.muraciet-eden-shexs-ishtirakchi-soyad').val();
+                            var fizikiShexsAd = $('.muraciet-eden-shexs-ishtirakchi-ad').val();
+                            var fizikiShexsAtaAdi = $('.muraciet-eden-shexs-ishtirakchi-atadi').val();
+
+                            name = fizikiShexsSoyad +' '+ fizikiShexsAd +' '+ fizikiShexsAtaAdi;
+                        }else{
+                            name = $('.legal_user_name').val()
+                        }
+                        $('.add-muraciet-eden-shexs').hide()
+                        $('.accepted').show();
+                        $('.export').parents('div').show();
+                        $('.mur-eden-shexs').html("<div class='col-md-3'><h6>" + series +""+ number +"</h6></div><div class='col-md-3'><h6>"+apply_user_type+"</h6></div><div class='col-md-3'><h6>"+name+"</h6></div><div class='col-md-2'> <h6>"+other_notes+"</h6></div><div class='col-md-1'><button type='button' class='btn' data-toggle='modal' data-target='.bd-example-modal-xl' style='border: 0;padding: 0px 15px 12px 10px;height: 71%;'><img src='{{asset('files/icons/edit.png')}}'></button><button type='button' class='remove-user' style='border: 0;padding: 0px 15px 12px 10px;height: 71%;'><img src='{{asset('files/icons/x.png')}}'></button></div>");
+
+
 
                     } else {
                         alert("validation xetasi");
                     }
             }
         });
-        {{--$('.muraciet-eden-shexsler').css('display','flex');--}}
-        {{--var series = $('.shv-seriyasi option:selected').text();--}}
-        {{--var number = $('.shv-nomresi').val();--}}
-        {{--var other_notes = $('.other_notes').val();--}}
-        {{--var apply_user_type = $('.apostil-types option:selected').text();--}}
-        {{--var name = '';--}}
-        {{--if ($('.apostil-types').val() == 1){--}}
-        {{--    var fizikiShexsSoyad = $('.muraciet-eden-shexs-ishtirakchi-soyad').val();--}}
-        {{--    var fizikiShexsAd = $('.muraciet-eden-shexs-ishtirakchi-ad').val();--}}
-        {{--    var fizikiShexsAtaAdi = $('.muraciet-eden-shexs-ishtirakchi-atadi').val();--}}
-
-        {{--    name = fizikiShexsSoyad +' '+ fizikiShexsAd +' '+ fizikiShexsAtaAdi;--}}
-        {{--}else{--}}
-        {{--    name = $('.legal_user_name').val()--}}
-        {{--}--}}
-        {{--$('.add-muraciet-eden-shexs').hide()--}}
-        {{--$('.accepted').show();--}}
-        {{--$('.export').show();--}}
-        {{--$('.mur-eden-shexs').html("<div class='col-md-3'><h6>" + series +""+ number +"</h6></div><div class='col-md-3'><h6>"+apply_user_type+"</h6></div><div class='col-md-3'><h6>"+name+"</h6></div><div class='col-md-2'> <h6>"+other_notes+"</h6></div><div class='col-md-1'><button type='button' class='btn' data-toggle='modal' data-target='.bd-example-modal-xl' style='border: 0;padding: 0px 15px 12px 10px;height: 71%;'><img src='{{asset('files/icons/edit.png')}}'></button><button type='button' class='remove-user' style='border: 0;padding: 0px 15px 12px 10px;height: 71%;'><img src='{{asset('files/icons/x.png')}}'></button></div>");--}}
 
 
 

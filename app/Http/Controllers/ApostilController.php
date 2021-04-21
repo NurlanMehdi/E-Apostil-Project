@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AllSelectBox;
 use App\Models\ApostilDocument;
 use App\Models\ImzalayanShexs;
+use App\Models\ApostilUser;
 use Illuminate\Http\Request;
 
 class ApostilController extends Controller
@@ -12,15 +13,17 @@ class ApostilController extends Controller
     public function addApostil($id)
     {
         $imzalayanShexs = ImzalayanShexs::all();
+        $apostilUser = null;
         $senedinTipi = AllSelectBox::where('key','senedin_tipi')->get();
         $qohumluqDerecesi = AllSelectBox::where('key','qohumluq_derecesi')->get();
         $apostilDocument = [];
         if ($id !== "new"){
             $apostilDocument = ApostilDocument::where('id',$id)->first();
             $apostilDocument['apostil_signing_user_name'] = ImzalayanShexs::select('name')->where('id',$apostilDocument->apostil_signing_user_id)->first();
+            $apostilUser = ApostilUser::where('id',$apostilDocument->apostil_user_id)->first();
         }
 
-        return view('layouts.addApostil',['imzalayanShexs'=>$imzalayanShexs,'senedinTipi'=>$senedinTipi,'qohumluqDerecesi'=>$qohumluqDerecesi,'documentId'=>$id,'apostilDocumentInfo'=>$apostilDocument]);
+        return view('layouts.addApostil',['imzalayanShexs'=>$imzalayanShexs,'senedinTipi'=>$senedinTipi,'qohumluqDerecesi'=>$qohumluqDerecesi,'documentId'=>$id,'apostilDocumentInfo'=>$apostilDocument,'apostilUser'=>$apostilUser]);
     }
 
     public function getParticipantUserTypes($id)
@@ -44,14 +47,22 @@ class ApostilController extends Controller
                 $imzalayanShexs = '';
             }
 
-            $apostilDocuments = ApostilDocument::where('is_deleted',0)
+            $apostilDocuments = ApostilDocument::leftJoin('apostil_users', 'apostil_users.id', '=', 'apostil_documents.apostil_user_id')->where('is_deleted',0)
                 ->where('apostil_number', 'LIKE', '%'.$data['apostilNumber'].'%')
                 ->where('status', 'LIKE', '%'.$data['status'].'%')
                 ->where('apostil_date', 'LIKE', '%'.$data['apostilDate'].'%')
                 ->where('rs_short_note', 'LIKE', '%'.$data['shortNote'].'%')
                 ->where('apostil_signing_user_id', 'LIKE', '%'.$imzalayanShexs.'%')
-                ->where('apostil_signing_user_id', 'LIKE', '%'.$imzalayanShexs.'%')
-                ->orderBy('id', 'DESC')
+                ->where('doc_presented_native_id', 'LIKE', '%'.$data['vetendashligi'].'%')
+//                ->where('legal_user_name', 'LIKE', '%'.$data['legalUserName'].'%')
+//                ->where('doc_owner_name', 'LIKE', '%'.$data['docOwnerName'].'%')
+//                ->where('doc_owner_fathername', 'LIKE', '%'.$data['docOwnerFathername'].'%')
+//                ->where('doc_owner_lastname', 'LIKE', '%'.$data['docOwnerLastname'].'%')
+//                ->where('doc_presented_name', 'LIKE', '%'.$data['presentedByOwnerName'].'%')
+//                ->where('doc_presented_lastname', 'LIKE', '%'.$data['presentedByOwnerLastname'].'%')
+//                ->where('doc_presented_fathername', 'LIKE', '%'.$data['presentedByOwnerFathername'].'%')
+//                ->where('voen', 'LIKE', '%'.$data['voen'].'%')
+                ->orderBy('apostil_documents.id', 'DESC')
                 ->get();
         }elseif (isset($data)) {
             $apostilDocuments = ApostilDocument::whereIn('id', $data)
@@ -100,10 +111,11 @@ class ApostilController extends Controller
             'rs_document_name_en' => 'required|string|max:50',
             'rs_short_note' => 'required|string|max:500',
 
-            'apply_user_id' => 'required|integer|exists:apostil_users,id'
+            'apply_user_id' => 'required|integer|exists:apostil_users,id|nullable'
         ]);
 
         if ($validator->fails()){
+        //    var_dump(redirect()->back()->withErrors($validator));
             return redirect()->back()->withErrors($validator);
         }else{
             $apostilDocument = new ApostilDocument();

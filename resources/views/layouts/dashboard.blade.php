@@ -11,7 +11,7 @@
                 </div>
                 <div class="col-md-6">
                     <h6>{{__('language.apostilin_nomresi')}}</h6>
-                    <input class="apostil-number" placeholder="{{__('language.apostilin_nomresi')}}" name="apostil_number" type="number">
+                    <input class="apostil-number" placeholder="{{__('language.apostilin_nomresi')}}" name="apostil_number" type="text">
                 </div>
 
             </div>

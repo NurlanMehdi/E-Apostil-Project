@@ -34,7 +34,7 @@ class CreateApostilDocumentsTable extends Migration
             $table->integer('status')->default(0);
 
 
-            $table->unsignedBigInteger('apostil_user_id');
+            $table->unsignedBigInteger('apostil_user_id')->nullable();
 
             $table->integer('is_deleted')->default(0);
         });

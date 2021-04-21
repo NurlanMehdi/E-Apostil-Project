@@ -710,7 +710,6 @@ input:focus {
     border: 1px #15306b;
     border-style: solid none;
     width: 100%;
-    display: none;
     background-color: #f3f3f3;
     margin-left: 0%;
 }
