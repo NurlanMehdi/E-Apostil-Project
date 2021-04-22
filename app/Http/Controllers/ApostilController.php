@@ -115,7 +115,6 @@ class ApostilController extends Controller
         ]);
 
         if ($validator->fails()){
-        //    var_dump(redirect()->back()->withErrors($validator));
             return redirect()->back()->withErrors($validator);
         }else{
             $apostilDocument = new ApostilDocument();

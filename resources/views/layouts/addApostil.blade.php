@@ -26,7 +26,7 @@
                     <label class="export">{{__('language.export')}}</label>
                 </div>
                 <div class="col-md-4">
-                    <a class="save" href="{{route('dashboard')}}"><img src="{{asset('files/icons/save.png')}}"></a>
+                    <a class="save-apostil-document" href="{{route('dashboard')}}"><img src="{{asset('files/icons/save.png')}}"></a>
                     </br>
                     <label class="save">{{__('language.yaddaSaxla')}}</label>
                 </div>
@@ -489,7 +489,7 @@
                                                     @endif
                                                 @else
                                                     <option value="1">AA-</option>
-                                                    <option value="2">AZE-</option>
+                                                    <option selected value="2">AZE-</option>
                                                 @endif
 
                                             </select>
@@ -500,13 +500,13 @@
                                         <div class="col-md-2">
                                             <input class="shv-nomresi" name="shv_number"
                                                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                                   type="number" value="{{$apostilUser->shv_number ?? ''}}" maxlength="8">
+                                                   type="text" value="{{$apostilUser->shv_number ?? ''}}" maxlength="8">
                                             @if($errors->has('shv_number'))
                                                 <h6 class="error">{{ $errors->first('shv_number') }}</h6>
                                             @endif
                                         </div>
                                         <div class="col-md-5">
-                                            <button class="shv-axtar" type="submit">{{__('language.axtar')}}</button>
+                                            <button class="shv-axtar" type="button">{{__('language.axtar')}}</button>
                                         </div>
                                     </div>
                                 </div>
@@ -523,12 +523,7 @@
                                         </div>
                                         <div class="col-md-3 bashliq"><h6>{{__('language.verenOrqan')}}</h6></div>
                                         <div class="col-md-3">
-                                            <select name="letter_name" class="veren-orqan">
-                                                <option value="volvo">İmzalayan şəxs 1</option>
-                                                <option value="saab">İmzalayan şəxs 1</option>
-                                                <option value="mercedes">İmzalayan şəxs 1</option>
-                                                <option value="audi">İmzalayan şəxs 1</option>
-                                            </select>
+                                            <input name="letter_name" type="text" class="veren-orqan">
                                             @if($errors->has('letter_name'))
                                                 <h6 class="error">{{ $errors->first('letter_name') }}</h6>
                                             @endif
@@ -591,10 +586,10 @@
                                     <div class="row">
                                         <div class="col-md-3 bashliq"><h6>{{__('language.vetendashligi')}}</h6></div>
                                         <div class="col-md-9">
-                                            <select name="doc_presented_native_id" class="vetendashligi" value="-">
+                                            <select name="doc_presented_native_id" class="vetendashligi">
                                                 @if($apostilUser->doc_presented_native_id ?? '')
                                                     @if($apostilUser->doc_presented_native_id == 1)
-                                                        <option selected value="1">Azərbaycan vətəndaşı</option>
+                                                        <option selected  value="1">Azərbaycan vətəndaşı</option>
                                                         <option value="2">Əcnəbi</option>
                                                     @else
                                                         <option  value="1">Azərbaycan vətəndaşı</option>
@@ -661,37 +656,123 @@
                 <div class="modal-content">
                     <div class="row export-modal-background">
                         <div class="col-md-6 pdf-viewer">
-                            <div class="row pdf-apostille">
+                            <div style="display: none" class="row pdf-apostille" id="apostil">
                                 <div class="col-md-12 apostille-title"><h3>APOSTILLE</h3></div>
                                 <div class="col-md-12 apostill-convetion"><label>(Convention de La Haye du 5 octobre 1961)</br>(5 oktyabr 1961-ci il Haaqa Konvensiyası)</label></div>
-                                <div class="col-md-12 country">
+                                <div class="col-md-12">
                                     <div class="row">
                                         <div class="col-md-1 sira">1</div>
-                                        <div class="col-md-11 info"><h6>Azerbaycan Respublikası / Respublic of Azerbaijan</br><label>Ölkə / Country</label></h6></div>
+                                        <div class="col-md-11 info">
+                                            <div class="row">
+                                                <div class="col-md-12"><h6 class="country">Azerbaycan Respublikası / Respublic of Azerbaijan</h6></div>
+                                                <div class="col-md-12"><label>Ölkə / Country</label></div>
+                                            </div>
+                                        </div>
                                         <div class="col-md-12 space-with-title"><h5>Hazırki rəsmi sənəd / This public document</h5></div>
                                         <div class="col-md-1 sira">2</div>
-                                        <div class="col-md-11 info"><h6>Məmmədov / Mammadov</br><label>İmzalayan (soyadı) / Has been signed by (surname)</label></h6></div>
+                                        <div class="col-md-11 info">
+                                            <div class="row">
+                                                <div class="col-md-12"><h6 class="signing-user"></h6></div>
+                                                <div class="col-md-12"><label>İmzalayan (soyadı) / Has been signed by (surname)</label></div>
+                                            </div>
+                                        </div>
                                         <div class="col-md-1 sira">3</div>
-                                        <div class="col-md-11 info"><h6>Qardaş / Brother</br><label>Hansı qismdə çıxış etmişdir / Acting in the capacity of</label></h6></div>
+                                        <div class="col-md-11 info">
+                                            <div class="row">
+                                                <div class="col-md-12"><h6 class="qohumluq-elaqesi"></h6></div>
+                                                <div class="col-md-12"><label>Hansı qismdə çıxış etmişdir / Acting in the capacity of</label></div>
+                                            </div>
+                                        </div>
                                         <div class="col-md-1 sira">4</div>
-                                        <div class="col-md-11 info"><h6>Şahin Məmmədov / Shahin Mammadov</br><label>Möhürün, ştampın sahibi / Bears the seal, stamp of</label></h6></div>
+                                        <div class="col-md-11 info">
+                                            <div class="row">
+                                                <div class="col-md-12"><h6 class="mohur"></h6></div>
+                                                <div class="col-md-12"><label>Möhürün, ştampın sahibi / Bears the seal, stamp of</label></div>
+                                            </div>
+                                        </div>
                                         <div class="col-md-12 space-with-title"><h5>Təsdiq edilmişdir / Certiﬁed</h5></div>
                                         <div class="col-md-1 sira">5</div>
-                                        <div class="col-md-5 info"><h6>Bakı / Baku</br><label>Şəhər / At</label></h6></div>
+                                        <div class="col-md-5 info">
+                                            <div class="row">
+                                                <div class="col-md-12"><h6 class="city"></h6></div>
+                                                <div class="col-md-12"><label>Şəhər / At</label></div>
+                                            </div>
+                                        </div>
                                         <div class="col-md-1 sira">6</div>
-                                        <div class="col-md-5 info"><h6>dd.mm.yyyy</br><label>Tarixdə / The</label></h6></div>
+                                        <div class="col-md-5 info">
+                                            <div class="row">
+                                                <div class="col-md-12"><h6 class="date"></h6></div>
+                                                <div class="col-md-12"><label>Tarixdə / The</label></div>
+                                            </div>
+                                        </div>
                                         <div class="col-md-1 sira">7</div>
-                                        <div class="col-md-11 info"><h6>Xarici İşlər Nazirliyinin Konsulluq İdarəsi /</br> Consular Department of the Ministry of Foreign Afairs</br><label>Tərəﬁndən / By</label></h6></div>
+                                        <div class="col-md-11 info">
+                                            <div class="row">
+                                                <div class="col-md-12"><h6 class="terefinden"></h6></div>
+                                                <div class="col-md-12"><label>Tərəﬁndən / By</label></div>
+                                            </div>
+                                        </div>
                                         <div class="col-md-1 sira">8</div>
-                                        <div class="col-md-11 info"><h6>0123456789</br><label>Nömrəli / Reg. number</label></h6></div>
+                                        <div class="col-md-11 info">
+                                            <div class="row">
+                                                <div class="col-md-12"><h6 class="nomreli"></h6></div>
+                                                <div class="col-md-12"><label>Nömrəli / Reg. number</label></div>
+                                            </div>
+                                        </div>
                                         <div class="col-md-1 sira">9</div>
-                                        <div class="col-md-5 info"><h6></br><label>Möhür, ştamp / Seal, stamp </label></h6></div>
+                                        <div class="col-md-5 info">
+                                            <div class="row">
+                                                <div class="col-md-12"><h6 class="mohur-img"></h6></div>
+                                                <div class="col-md-12"><label>Möhür, ştamp / Seal, stamp</label></div>
+                                            </div>
+                                        </div>
                                         <div class="col-md-1 sira">10</div>
-                                        <div class="col-md-5 info"><h6></br><label>İmza / Signature</label></h6></div>
+                                        <div class="col-md-5 info">
+                                            <div class="row">
+                                                <div class="col-md-12"><h6 class="signature"></h6></div>
+                                                <div class="col-md-12"><label>İmza / Signature</label></div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <hr class="horizontal-line">
                                 <div class="col-md-12 apostill-convetion"><label>Apostil sənədin mətninə şamil edilmir</br>Apostille does not relate to the content of the document</label></div>
+                            </div>
+                            <div class="row pdf-chixarish" id="chixarish">
+                                <div class="col-md-12 apostille-title"><h6>Apostillərin Elektron Reyestri” İnformasiya Sistemləri</h6></div>
+                                <div class="col-md-12 apostille-title"><h4>ÇIXARIŞ</h4></div>
+                                <div class="col-md-12 country">
+                                    <div class="accepted-apostil-doc row">
+                                        <div class="space-pdf">Apostil barədə məlumat</div>
+                                        <div class="space-white-pdf pdf-apostil-number">Apostilin nömrəsi : <a></a></div>
+                                        <div class="space-white-pdf pdf-apostil-date">Apostilin tarixi :<a></a></div>
+                                        <div class="space-white-pdf pdf-letten-name">Apostil verən orqanın adı :<a></a></div>
+                                        <div class="space-white-pdf pdf-signing-user">Apostili imzalamış şəxs :<a></a></div>
+
+                                        <div class="space-pdf">Rəsmi sənəd barədə məlumatlar</div>
+                                        <div class="space-white-pdf pdf-doc-type">Sənədin tipi :<a></a></div>
+                                        <div class="space-white-pdf pdf-doc-num-date">Sənədin nömrəsi və tarixi :<a></a></div>
+                                        <div class="space-white-pdf pdf-senedi-veren-orqan">Sənədi verən orqan : <a></a></div>
+
+                                        <div class="space-pdf pdf-document-info">Sənəd barədə məlumatlar</div>
+                                        <div class="space-white-pdf pdf-doc-name">Sənədin adı (Document name) : <a></a></div>
+                                        <div class="space-white-pdf pdf-short-text">Sənədin qısa məzmunu :<a></a></div>
+
+                                        <div class="space-pdf">Müraciət edən şəxs</div>
+                                        <table id="exportTable" class="table table-hover">
+                                            <tbody>
+                                            <tr>
+                                                <td class="1"></td>
+                                                <td class="2"></td>
+                                                <td class="3"></td>
+                                                <td class="4"></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <hr class="horizontal-line">
+                                <div class="col-md-12 apostill-convetion"><label>Azərbaycan Respublikası Xarici İşlər Nazirliyinin “Rəsmi Sənədlərə </br>Şəhədətnamənin (Apostil) Verilməsi Sistemi” informasiya sistemi </br>vasitəsi ilə XİN (apostil), USER1 tərəﬁndən çap edilmişdir. </label></div>
                             </div>
                         </div>
                         <div class="col-md-6 pdf-tools">
@@ -702,18 +783,10 @@
                                         <option value="apostil">Apostil</option>
                                     </select>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="row pdf-buttons">
-                                        <div class="col-md-3>
-                                                 <a class="download-pdf"><img src="{{asset('files/icons/download.png')}}"></a>
-                                        </br>
-                                        <h6>Yüklə</h6>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a class="export-pdf"><img src="{{asset('files/icons/export.png')}}"></a>
-                                        </br>
-                                        <h6>Çap et</h6>
-                                    </div>
+                                <div class="col-md-6" style="text-align: center">
+                                    <a class="export-pdf" id="exportPdf"><img src="{{asset('files/icons/export.png')}}"></a>
+                                    </br>
+                                    <h6>Çap et</h6>
                                 </div>
                             </div>
                         </div>
@@ -731,43 +804,81 @@
     <script src="{{asset('js/printThis.js')}}"></script>
     <script type="text/javascript">
 
-        loadUserTypes(2)
+        $('.shv-axtar').on('click',function (){
 
-        $('.export-pdf').on('click',function(){
-            var id = 'pdf-chixarish';
-            if($('.selected-pdf-viewer option:selected').val() == 'chixarish'){
-                id = 'pdf-chixarish';
-            }else {
-                id = 'pdf-apostille'
-            }
+            var serie = $('.shv-seriyasi option:selected').text();
+            var seriesNumber = $('.shv-nomresi').val();
+            var fullSerieNumber = serie+''+seriesNumber;
+            console.log(fullSerieNumber)
+            var userInfoFinCode = {
+                'AZE-25739312': {'name': "Murad", 'lastname': "Əliyev", 'fathername': 'Fərid','verenOrqan':'ASAN1','vesiqeninVerilmeTarixi':'2012-09-01','qeydiyyat':'Binəqədi ray.,E.Isayev, ev 24 m 5','dogumTarixi':'1976-02-21'},
+                'AZE-14793132': {'name': "Nurlan", 'lastname': "Güləliyev", 'fathername': 'Mehdi','verenOrqan':'ASAN3','vesiqeninVerilmeTarixi':'2014-12-10','qeydiyyat':'Bakı şəh.,Yasamal ray.,Ə.Veliyev, ev 33 m 2','dogumTarixi':'1998-09-12'},
+            };
 
-            $("#"+id).printThis({
-                debug: false,               // show the iframe for debugging
-                importCSS: true,            // import parent page css
-                importStyle: false,         // import style tags
-                printContainer: true,       // print outer container/$.selector
-                loadCSS: "{{asset('css/style.css')}}",                // path to additional css file - use an array [] for multiple
-                pageTitle: "",              // add title to print page
-                removeInline: false,        // remove inline styles from print elements
-                removeInlineSelector: "*",  // custom selectors to filter inline styles. removeInline must be true
-                printDelay: 333,            // variable print delay
-                header: null,               // prefix to html
-                footer: null,               // postfix to html
-                base: false,                // preserve the BASE tag or accept a string for the URL
-                formValues: true,           // preserve input/form values
-                canvas: false,              // copy canvas content
-                doctypeString: '...',       // enter a different doctype for older markup
-                removeScripts: false,       // remove script tags from print content
-                copyTagClasses: false,      // copy classes from the html & body tag
-                beforePrintEvent: null,     // function for printEvent in iframe
-                beforePrint: null,          // function called before iframe is filled
-                afterPrint: null            // function called before iframe is removed
+            $.each(userInfoFinCode,function (seriesNumberIamas,value){
+                if (seriesNumberIamas == fullSerieNumber){
+                    $('input[name="doc_presented_date"]').val(value.vesiqeninVerilmeTarixi)
+                    $('input[name="letter_name"]').val(value.verenOrqan)
+
+                    $('input[name="doc_presented_name"]').val(value.name)
+                    $('input[name="doc_presented_lastname"]').val(value.lastname)
+                    $('input[name="doc_presented_fathername"]').val(value.fathername)
+
+
+                    $('input[name="doc_presented_birtday_date"]').val(value.dogumTarixi)
+
+                    $('input[name="doc_presented_reg_address"]').val(value.qeydiyyat)
+                }
             });
         })
 
+        loadUserTypes(2)
 
+        $('.selected-pdf-viewer').on('change',function (){
+            if ($(this).val() == 'chixarish'){
+                $('#chixarish').show()
+                $('#apostil').hide()
+            }else{
+                $('#chixarish').hide()
+                $('#apostil').show()
 
-        $('.save-button .save').on('click', function (e) {
+                $('.vetendashligi').text()
+            }
+        })
+
+        $('.export-pdf').on('click',function(){
+            var id = 'chixarish';
+            if($('.selected-pdf-viewer option:selected').val() == 'chixarish'){
+                id = 'chixarish';
+            }else {
+                id = 'apostil'
+            }
+
+            $("#"+id).printThis({
+                loadCSS: "{{asset('vendor/bootstrap/css/bootstrap-grid.css')}}"
+            });
+        })
+
+        $('.export').on('click',function(){
+
+            if($('.selected-pdf-viewer option:selected').val() == 'chixarish'){
+                $('.pdf-apostil-number a').html($('.apostil-nomresi').val());
+                $('.pdf-apostil-date a').html($('.apostil-tarixi').val());
+                $('.pdf-doc-type a').html($('.apostil-types option:selected').text());
+                $('.pdf-doc-num-date a').html($('.rs_nomresi').val() + ' /' + $('.rs_tarixi').val());
+                $('.pdf-senedi-veren-orqan a').html($('.rs_veren_orqan').val());
+                $('.pdf-doc-name a').html($('.rs_sened_ad').val());
+                $('.pdf-short-text a').html($('.rs_qisa_mezmun').val());
+                $('#exportTable .1').html($('.mur-eden-shexs div:eq(0)').text());
+                $('#exportTable .2').html($('.mur-eden-shexs div:eq(1)').text());
+                $('#exportTable .3').html($('.mur-eden-shexs div:eq(2)').text());
+                $('#exportTable .4').html($('.mur-eden-shexs div:eq(3)').text());
+            }else {
+
+            }
+        })
+
+        $('.save-button .save-apostil-document').on('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
             $('#createApostil').append('<input type="hidden" name="status" value="0">');
@@ -798,19 +909,15 @@
                 success: function (response) {
                     let userTypeSelect = '<option hidden disabled selected></option>';
 
-
                     response.data.map(item => (
 
                         userTypeSelect += "<option  name=" + item.string_id + " value=" + item.id + ">" + item.name + "</option>"
 
                     ))
-
                     $('.apostil-user-types').html("");
                     $('.apostil-user-types').html("<select class='ishtirakci' name='apply_participant'>" + userTypeSelect + "</select>");
-
                 }
             })
-
             $(".ishtirakci option:first").trigger('change')
         }
 
@@ -876,38 +983,33 @@
                         $('.new-apostil-user .close').click();
                         $('input[name="apply_user_id"]').val('');
                         $('input[name="apply_user_id"]').val(data.id);
-                        $('.muraciet-eden-shexsler').css('display','flex');
+                        $('.muraciet-eden-shexsler').css('display', 'flex');
                         var series = $('.shv-seriyasi option:selected').text();
                         var number = $('.shv-nomresi').val();
                         var other_notes = $('.other_notes').val();
                         var apply_user_type = $('.apostil-types option:selected').text();
                         var name = '';
-                        if ($('.apostil-types').val() == 1){
+                        if ($('.apostil-types').val() == 1) {
                             var fizikiShexsSoyad = $('.muraciet-eden-shexs-ishtirakchi-soyad').val();
                             var fizikiShexsAd = $('.muraciet-eden-shexs-ishtirakchi-ad').val();
                             var fizikiShexsAtaAdi = $('.muraciet-eden-shexs-ishtirakchi-atadi').val();
 
-                            name = fizikiShexsSoyad +' '+ fizikiShexsAd +' '+ fizikiShexsAtaAdi;
-                        }else{
+                            name = fizikiShexsSoyad + ' ' + fizikiShexsAd + ' ' + fizikiShexsAtaAdi;
+                        } else {
                             name = $('.legal_user_name').val()
                         }
                         $('.add-muraciet-eden-shexs').hide()
                         $('.accepted').show();
                         $('.export').parents('div').show();
-                        $('.mur-eden-shexs').html("<div class='col-md-3'><h6>" + series +""+ number +"</h6></div><div class='col-md-3'><h6>"+apply_user_type+"</h6></div><div class='col-md-3'><h6>"+name+"</h6></div><div class='col-md-2'> <h6>"+other_notes+"</h6></div><div class='col-md-1'><button type='button' class='btn' data-toggle='modal' data-target='.bd-example-modal-xl' style='border: 0;padding: 0px 15px 12px 10px;height: 71%;'><img src='{{asset('files/icons/edit.png')}}'></button><button type='button' class='remove-user' style='border: 0;padding: 0px 15px 12px 10px;height: 71%;'><img src='{{asset('files/icons/x.png')}}'></button></div>");
-
+                        $('.mur-eden-shexs').html("<div class='col-md-3'><h6>" + series + "" + number + "</h6></div><div class='col-md-3'><h6>" + apply_user_type + "</h6></div><div class='col-md-3'><h6>" + name + "</h6></div><div class='col-md-2'> <h6>" + other_notes + "</h6></div><div class='col-md-1'><button type='button' class='btn' data-toggle='modal' data-target='.bd-example-modal-xl' style='border: 0;padding: 0px 15px 12px 10px;height: 71%;'><img src='{{asset('files/icons/edit.png')}}'></button><button type='button' class='remove-user' style='border: 0;padding: 0px 15px 12px 10px;height: 71%;'><img src='{{asset('files/icons/x.png')}}'></button></div>");
 
 
                     } else {
                         alert("validation xetasi");
                     }
-            }
+                }
+            });
         });
-
-
-
-        })
-        ;
 
         $(document).on('click', '.remove-user', function () {
             $('.mur-eden-shexs').html('')
