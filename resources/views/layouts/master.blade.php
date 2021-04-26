@@ -21,7 +21,6 @@
     <link rel="stylesheet" href="{{asset('vendor/bootstrap/css/bootstrap.css')}}" />
     <link rel="stylesheet" href="{{asset('vendor/bootstrap/css/bootstrap-grid.css')}}" />
     <link rel="stylesheet" href="{{asset('vendor/bootstrap/css/bootstrap-reboot.css')}}" />
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
@@ -37,7 +36,8 @@
                 <div class="col-md-12">
                     <div class="container-user-info">
                         <div class="emblem">
-                            <img src="{{asset('files/Emblem.png')}}">
+                            <a href="{{route('dashboard')}}">  <img src="{{asset('files/Emblem.png')}}"></a>
+
                         </div>
                         <div class="emblem-text">
                             <h6>{{__('language.az_resp')}}<br/>{{__('language.xin')}}</h6>
@@ -96,7 +96,7 @@
 <script src="{{asset('vendor/bootstrap/js/bootstrap.js')}}"></script>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+<script src="{{asset('js/bootstrap-datepicker.js')}}"></script>
 @yield('javascript')
 </body>
 </html>

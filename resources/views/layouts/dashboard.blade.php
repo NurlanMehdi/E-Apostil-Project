@@ -2,31 +2,26 @@
 @section('title','Apostil Reyestr')
 @section('content')
     <div class="row search-bar">
-        <div class="col-md-4 buttons">
-            <div class="row">
-                <div class="col-md-6">
+        <div class="col-md-12 buttons">
+            <div class="row input-group mb-3">
+                <div class="col">
                     <h6>{{__('language.tarix')}}</h6>
                     <input readonly='true' name="doc_presented_date" type="text" name="doc_presented_date" class="form-control datepicker-apostil apostil-date"
                            value="<?= date('Y-m-d') ?>">
                 </div>
-                <div class="col-md-6">
+                <div class="col">
                     <h6>{{__('language.apostilin_nomresi')}}</h6>
-                    <input class="apostil-number" placeholder="{{__('language.apostilin_nomresi')}}" name="apostil_number" type="text">
+                    <input class="form-control apostil-number" placeholder="{{__('language.apostilin_nomresi')}}" name="apostil_number" type="text">
                 </div>
-
-            </div>
-        </div>
-        <div class="col-md-8 buttons-and-icons">
-            <div class="row">
-                <div class="col-md-4"><h6>{{__('language.status')}}</h6>
-                    <select class="status" name="status">
-                        <option hidden selected></option>
+                <div class="col"><h6>{{__('language.status')}}</h6>
+                    <select class="form-control status" name="status">
+                        <option hidden selected>-</option>
                         <option value="0">{{__('language.statusTesdiqOlunmayib')}}</option>
                         <option value="1">{{__('language.statusTesdiqOlunub')}}</option>
                     </select>
                 </div>
-                <div class="col-md-4"><h6>{{__('language.qisaMezmunu')}}</h6> <input class="short_note" name="qisa_mezmunu" placeholder="{{__('language.qisaMezmunu')}}" type="text"></div>
-                <div class="col-md-4">
+                <div class="col"><h6>{{__('language.qisaMezmun')}}</h6> <input class="short_note form-control" name="qisa_mezmunu" placeholder="{{__('language.qisaMezmun')}}" type="text"></div>
+                <div class="col">
                     <div class="row btn-header-container">
                         <div class="col-md-3 btn-header">
                             <button class="search-document" type="button"><img src="{{asset('files/icons/search.png')}}"></button>
@@ -55,6 +50,7 @@
                 </div>
             </div>
         </div>
+
         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
             <div class="modal-dialog delete-all-selected-document" role="document">
                 <div class="modal-content delete-modal-document">
@@ -74,6 +70,29 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary accept">{{__('language.accepted')}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="thisDocumentDeleteModal" tabindex="-1" role="dialog" aria-labelledby="thisDocumentDeleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog delete-all-selected-document" role="document">
+                <div class="modal-content delete-modal-document">
+                    <div class="modal-header">
+
+                        <button type="button" class="close-delete-modal" data-dismiss="modal" aria-label="Close">
+                            <img src="{{asset('files/icons/x.png')}}">
+                        </button>
+                    </div>
+                    <h5 class="modal-title" id="exampleModalLabel">Seçili Apostili silmək istəyirsinizmi?</h5>
+                    <div class="modal-body">
+                        <table class="table">
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary delete-one-document">{{__('language.accepted')}}</button>
                     </div>
                 </div>
             </div>
@@ -140,25 +159,33 @@
             </div>
         </div>
     </div>
+    <div class="all-documents table-responsive">
 
-    <table class="table apostil-documents">
-        <thead>
-        <tr>
-            <th></th>
-            <th scope="col" class="selected-all-th"><input type="checkbox" class="slected-all" name="selected-all"></th>
-            <th scope="col">
-                <h5 style="cursor: pointer;" class="order-date"><img src="{{asset('files/icons/2-layers.png')}}">{{__('language.tarix')}}</h5>
-            </th>
-            <th scope="col"><h5>{{__('language.apostilin_nomresi')}}</h5></th>
-            <th scope="col"><h5>{{__('language.status')}}</h5></th>
-            <th scope="col"><h5>{{__('language.qisaMezmunu')}}</h5></th>
-            <th scope="col">&nbsp</th>
-        </tr>
-        </thead>
-        <tbody>
+        <table class="table apostil-documents">
+            <thead>
+            <tr>
+                <th scope="col" class="selected-all-th"><input type="checkbox" class="slected-all" name="selected-all"></th>
+                <th scope="col" class="selected-th">
+                    <h5 style="cursor: pointer;" class="order-date"><img style="margin-top: -2px;" src="{{asset('files/icons/filterOrder.png')}}">{{__('language.tarix')}}</h5>
+                </th>
+                <th scope="col" class="selected-th"><h5>{{__('language.apostilin_nomresi')}}</h5></th>
+                <th scope="col" class="selected-th"><h5>{{__('language.status')}}</h5></th>
+                <th scope="col" class="selected-th"><h5>{{__('language.qisaMezmun')}}</h5></th>
+                <th scope="col" class="selected-th">&nbsp</th>
+            </tr>
+            </thead>
+            <tbody>
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
+    <div class="page-buttons">
+        <div class="row">
+            <div class="col-md-8"></div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+
 @stop
 @section('javascript')
     <script type="text/javascript">
@@ -167,7 +194,8 @@
                 format: 'yyyy-mm-dd',
                 autoclose: true,
                 pickTime: false,
-                minView: 2
+                minView: 2,
+                language:'az'
             });
 
             $('.filter').on('click', function () {
@@ -279,7 +307,10 @@
                             if (key == 'delete-modal') {
                                 apostilDocuments += "<tr id='" + a.id + "'><td><h6>" + a.apostil_date + "</h6></td><td><h6>" + a.apostil_number + "</h6></td><td><h6>" + status + "</h6></td><td><h6>" + a.rs_short_note + "</h6></td></tr>"
                             } else {
-                                apostilDocuments += "<tr id='" + a.id + "'><td></td><td><input class='selected-doc' type='checkbox'></td><td><h6>" + a.apostil_date + "</h6></td><td><h6>" + a.apostil_number + "</h6></td><td><h6>" + status + "</h6></td><td><h6>" + a.rs_short_note + "</h6></td><td><button type='button' class='edit-doc'><img style='width: 14px;' src='{{asset('files/icons/edit.png')}}'></button><button type='button' class='remove-doc'><img style='width: 14px;' src='{{asset('files/icons/x.png')}}'></button></td></tr>"
+                                apostilDocuments += "<tr id='" + a.id + "'><td><input class='selected-doc' type='checkbox'></td><td><h6>" + a.apostil_date + "</h6></td><td><h6>" + a.apostil_number + "</h6></td><td><h6>" + status + "</h6></td><td><h6>" + a.rs_short_note + "</h6></td><td><button type='button' class='edit-doc'><img style='width: 14px;' src='{{asset('files/icons/edit.png')}}'></button><button type='button' class='remove-doc' data-target='#thisDocumentDeleteModal'><img style='width: 14px;' src='{{asset('files/icons/x.png')}}'></button></td></tr>"
+
+
+
                             }
                         })
 
@@ -288,11 +319,19 @@
                         } else {
                             $('.apostil-documents tbody').html(apostilDocuments);
                         }
+                        // var allDocumentTr = $('.apostil-documents tr').size();
+                        // var infoCount = 6
+                        // var pageCount = Math.round(allDocumentTr / infoCount);
+                        //
+                        // for (var i = 1;i<= pageCount;i++){
+                        //     $('.apostil-documents tbody').append(i)
+                        // }
                     }
                 })
             }
 
             $(document).on('click', '.remove-doc', function () {
+                $('#thisDocumentDeleteModal').modal('show');
                 var data = {};
                 let docId = $(this).closest('tr').attr('id');
                 data[docId] = parseInt(docId);

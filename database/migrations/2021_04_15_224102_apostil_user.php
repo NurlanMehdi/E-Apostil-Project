@@ -15,8 +15,8 @@ class ApostilUser extends Migration
     {
         Schema::create('apostil_users', function (Blueprint $table) {
             $table->id();
-            $table->integer('apply_user_type');
-            $table->integer('apply_participant');
+            $table->integer('apply_user_type')->nullable();
+            $table->integer('apply_participant')->nullable();
             $table->string('doc_owner_name',50)->nullable();
             $table->string('doc_owner_lastname',50)->nullable();
             $table->string('doc_owner_fathername',50)->nullable();
@@ -27,20 +27,19 @@ class ApostilUser extends Migration
             $table->string('legal_user_name',100)->nullable();
             $table->string('voen',50)->nullable();
             $table->string('position')->nullable();
-            $table->integer('doc_type_id');
-            $table->string('shv_series',4);
-            $table->integer('shv_number')->length(8);
-            $table->string('letter_name');
+            $table->integer('doc_type_id')->nullable();
+            $table->string('shv_series',4)->nullable();
+            $table->integer('shv_number')->length(8)->nullable();
+            $table->string('letter_name')->nullable();
             $table->date('doc_presented_date')->nullable();
-            $table->string('doc_presented_name');
-            $table->string('doc_presented_lastname');
-            $table->string('doc_presented_fathername');
+            $table->string('doc_presented_name')->nullable();
+            $table->string('doc_presented_lastname')->nullable();
+            $table->string('doc_presented_fathername')->nullable();
             $table->date('doc_presented_birtday_date')->nullable();
-            $table->string('doc_presented_reg_address');
-            $table->integer('doc_presented_native_id');
-            $table->string('doc_presented_tel',12);
-            $table->string('doc_presented_mail');
-            $table->string('other_notes',500);
+            $table->string('doc_presented_reg_address')->nullable();
+            $table->integer('doc_presented_native_id')->nullable();
+            $table->string('doc_presented_tel',12)->nullable();
+            $table->string('doc_presented_mail')->nullable();
         });
     }
 

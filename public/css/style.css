@@ -193,7 +193,8 @@ html,body {
 
 .dashboard-page-right .new-apostil {
     background-color: #FFFFFF;
-    height: 10%;
+    height: 95%;
+    overflow-y: auto;
 }
 
 .line {
@@ -209,7 +210,7 @@ select option {
     background-color: var(--color-f3f3f3);
 }
 
- select option:hover {
+select option:hover {
     color: #FFFFFF;
     background-color: var(--color-15306b) !important;
 }
@@ -430,7 +431,7 @@ select option {
 }
 
 .dashboard-page-right .new-apostil-create .muraciet-eden-shexs .col-md-11{
-    padding: 25px 30px;
+    padding: 18px 30px;
 }
 
 .dashboard-page-right .new-apostil-create .bashliq{
@@ -444,15 +445,9 @@ select option {
     padding: 1% 0% 0% 10%;
 }
 
-.apostil-form {
-    max-height: 85%;
-    overflow-y: scroll;
-}
-
 .dashboard-page-right .new-apostil-create .add-muraciet-eden-shexs {
     padding: 0px;
     text-align: center;
-    padding: 8px 30px;
     margin-top: -6px;
 }
 
@@ -480,7 +475,7 @@ input {
     outline: none;
 }
 
- button {
+button {
     border: 0;
     background-color:#FFFFFF;
     outline: none;
@@ -533,6 +528,8 @@ input {
     font-size: 29px;
 }
 
+
+
 .dashboard-page-right .page-title {
     padding: 40px 47px;
     font-size: 30px;
@@ -547,8 +544,6 @@ input {
 }
 
 .search-bar .buttons input {
-    height: 74%;
-    width: 80%;
     font-size: 13px;
     padding: 0px 17px;
 }
@@ -576,6 +571,11 @@ input {
 
 .other-filter {
     display: none;
+}
+
+.status {
+    height: 56%;
+    background-color: var(--color-f3f3f3);
 }
 
 .search-bar .other-filter select {
@@ -817,9 +817,10 @@ input:focus {
     color: var(--color-15306b);
 }
 
+
 .apostil-documents thead {
 
-    border-top: 2px solid var(--color-15306b);
+    border-top: 3px solid var(--color-15306b);
     border-bottom: 3px solid var(--color-15306b);
 }
 
@@ -839,9 +840,6 @@ input:focus {
     box-shadow: 0px 0px 0px 1px #15306b;
 }
 
-.selected-all-th {
-    padding: 0px 0px 18px 11px !important;
-}
 
 .mur-eden-shexs {
     width: 100%;
@@ -859,6 +857,20 @@ input:focus {
 }
 
 .accepted {
+    display: none;
+}
+
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.export {
     display: none;
 }
 
@@ -951,11 +963,15 @@ input:focus {
 }
 
 .apostil-documents  .col-md-3 {
-   padding: 10px 0px 0px 40px;;
+    padding: 10px 0px 0px 40px;;
 }
 
 .muraciet-eden-shexsler .col-md-3 {
-    padding: 20px 0px 15px 31px;
+    padding: 6px 0px 0px 30px;
+}
+
+.muraciet-eden-shexsler .col-md-4 {
+    padding: 6px 0px 0px 30px;
 }
 
 .apostil-documents-list .col-md-3 {
@@ -973,6 +989,17 @@ input:focus {
 .apostil-documents-list .col-md-4 {
     padding: 20px 0px 15px 31px;
 }
+
+.selected-all-th {
+    padding: 0px 0px 8px 11px !important;
+}
+
+
+.apostil-documents .selected-th {
+    padding: 5px 0px 0px 12px !important;
+}
+
+
 
 .login-center .login {
     background-color: var(--color-15306b);

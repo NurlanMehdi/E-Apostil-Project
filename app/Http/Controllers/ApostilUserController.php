@@ -11,32 +11,31 @@ class ApostilUserController extends Controller
     public function createApostilUser(): \Illuminate\Http\JsonResponse
     {
         $validator = validator(request()->all(),[
-//            'apply_user_type' => 'required|integer',
-//            'apply_participant' => 'required|integer',
-//            'doc_owner_name' => 'string|max:50|nullable',
-//            'doc_owner_lastname' => 'string|max:50|nullable',
-//            'doc_owner_fathername' => 'string|max:50|nullable',
-//            'relationship_id' => 'integer|nullable',
-//            'power_of_attorney_number' => 'integer|nullable',
-//            'letter_number' => 'integer|nullable',
-//            'issue_date' => 'date_format:Y-m-d|nullable',
-//            'legal_user_name' => 'string|max:60|nullable',
-//            'voen' => 'string|max:50|nullable',
-//            'position' => 'string|nullable',
-//            'doc_type_id' => 'required|integer',
-//            'shv_series' => 'required|string|max:4',
-//            'shv_number' => 'required|integer|digits:8',
-//            'letter_name' => 'required|string|max:500',
-//            'doc_presented_date' => 'required|date_format:Y-m-d',
-//            'doc_presented_name' => 'required|string|max:50',
-//            'doc_presented_lastname' => 'required|string|max:50',
-//            'doc_presented_fathername' => 'required|string|max:50',
-//            'doc_presented_birtday_date' => 'required|date_format:Y-m-d',
-//            'doc_presented_reg_address' => 'required|string|max:500',
-//            'doc_presented_native_id' => 'required|integer',
-//            'doc_presented_tel' => 'required|integer',
-//            'doc_presented_mail' => 'required|email',
-//            'other_notes' => 'required|string|max:500',
+            'apply_user_type' => 'nullable|integer',
+            'apply_participant' => 'nullable|integer',
+            'doc_owner_name' => 'string|max:50|nullable',
+            'doc_owner_lastname' => 'string|max:50|nullable',
+            'doc_owner_fathername' => 'string|max:50|nullable',
+            'relationship_id' => 'integer|nullable',
+            'power_of_attorney_number' => 'integer|nullable',
+            'letter_number' => 'integer|nullable',
+            'issue_date' => 'date_format:Y-m-d|nullable',
+            'legal_user_name' => 'string|max:60|nullable',
+            'voen' => 'string|max:50|nullable',
+            'position' => 'string|nullable',
+            'doc_type_id' => 'nullable|integer',
+            'shv_series' => 'nullable|string|max:4',
+            'shv_number' => 'nullable|integer|digits:8',
+            'letter_name' => 'nullable|string|max:500',
+            'doc_presented_date' => 'nullable|date_format:Y-m-d',
+            'doc_presented_name' => 'nullable|string|max:50',
+            'doc_presented_lastname' => 'nullable|string|max:50',
+            'doc_presented_fathername' => 'nullable|string|max:50',
+            'doc_presented_birtday_date' => 'nullable|date_format:Y-m-d',
+            'doc_presented_reg_address' => 'nullable|string|max:500',
+            'doc_presented_native_id' => 'nullable|integer',
+            'doc_presented_tel' => 'nullable|integer',
+            'doc_presented_mail' => 'nullable|email',
         ]);
 
 
@@ -72,7 +71,6 @@ class ApostilUserController extends Controller
             $user->doc_presented_native_id = request()->get('doc_presented_native_id');
             $user->doc_presented_tel = request()->get('doc_presented_tel');
             $user->doc_presented_mail = request()->get('doc_presented_mail');
-            $user->other_notes = request()->get('other_notes');
             $user->save();
 
             return response()->json(['status' => true,'id' => $user->id]);

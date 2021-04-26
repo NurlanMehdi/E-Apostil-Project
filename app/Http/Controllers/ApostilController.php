@@ -37,7 +37,7 @@ class ApostilController extends Controller
     {
 
         $data = json_decode($data, true);
-       // var_dump($data);
+        // var_dump($data);
         $apostilDocuments = [];
         if (isset($data['search']) && $data['search'] == true){
 
@@ -52,8 +52,8 @@ class ApostilController extends Controller
                 ->where('status', 'LIKE', '%'.$data['status'].'%')
                 ->where('apostil_date', 'LIKE', '%'.$data['apostilDate'].'%')
                 ->where('rs_short_note', 'LIKE', '%'.$data['shortNote'].'%')
-                ->where('apostil_signing_user_id', 'LIKE', '%'.$imzalayanShexs.'%')
-                ->where('doc_presented_native_id', 'LIKE', '%'.$data['vetendashligi'].'%')
+                // ->where('apostil_signing_user_id', 'LIKE', '%'.$imzalayanShexs.'%')
+                // ->where('doc_presented_native_id', 'LIKE', '%'.$data['vetendashligi'].'%')
 //                ->where('legal_user_name', 'LIKE', '%'.$data['legalUserName'].'%')
 //                ->where('doc_owner_name', 'LIKE', '%'.$data['docOwnerName'].'%')
 //                ->where('doc_owner_fathername', 'LIKE', '%'.$data['docOwnerFathername'].'%')
@@ -96,25 +96,25 @@ class ApostilController extends Controller
     {
         $validator = validator(request()->all(),[
             'apostil_number' => 'required|string|unique:apostil_documents|between:3,8',
-            'apostil_date' => 'required|date_format:Y-m-d',
-            'apostil_signing_user_id' => 'required|integer',
-            'apo_note' => 'required|string|max:500',
-            'rs_number' => 'required|integer',
-            'rs_date' => 'required|date_format:Y-m-d',
-            'rs_signing_user' => 'required|string|max:50',
-            'rs_signing_user_en' => 'required|string|max:50',
-            'rs_signing_position' => 'required|string|max:200',
-            'rs_signing_position_en' => 'required|string|max:200',
-            'rs_service' => 'required|string|max:200',
-            'rs_service_en' => 'required|string|max:200',
-            'rs_document_name' => 'required|string|max:50',
-            'rs_document_name_en' => 'required|string|max:50',
-            'rs_short_note' => 'required|string|max:500',
+             'apostil_date' => 'required|date_format:Y-m-d',
+             'apostil_signing_user_id' => 'nullable|integer',
+             'rs_number' => 'nullable|integer',
+             'rs_date' => 'nullable|date_format:Y-m-d',
+             'rs_signing_user' => 'nullable|string|max:50',
+             'rs_signing_user_en' => 'nullable|string|max:50',
+             'rs_signing_position' => 'nullable|string|max:200',
+             'rs_signing_position_en' => 'nullable|string|max:200',
+             'rs_service' => 'nullable|string|max:200',
+             'rs_service_en' => 'nullable|string|max:200',
+             'rs_document_name' => 'nullable|string|max:50',
+             'rs_document_name_en' => 'nullable|string|max:50',
+             'rs_short_note' => 'nullable|string|max:500',
 
-            'apply_user_id' => 'required|integer|exists:apostil_users,id|nullable'
+             'apply_user_id' => 'nullable|integer|exists:apostil_users,id'
         ]);
 
         if ($validator->fails()){
+            //    var_dump(redirect()->back()->withErrors($validator));
             return redirect()->back()->withErrors($validator);
         }else{
             $apostilDocument = new ApostilDocument();
@@ -123,7 +123,6 @@ class ApostilController extends Controller
             $apostilDocument->apostil_date=request()->get('apostil_date');
             $apostilDocument->apostil_signing_user_id=request()->get('apostil_signing_user_id');
             $apostilDocument->mail_status=request()->boolean('mail_status');
-            $apostilDocument->apo_note=request()->input('apo_note');
             $apostilDocument->rs_number=request()->input('rs_number');
             $apostilDocument->rs_date=request()->get('rs_date');
             $apostilDocument->rs_signing_user=request()->get('rs_signing_user');
@@ -150,20 +149,19 @@ class ApostilController extends Controller
     {
         $validator = validator(request()->all(),[
             'apostil_number' => 'required|string|between:3,8',
-            'apostil_date' => 'required|date_format:Y-m-d',
-            'apostil_signing_user_id' => 'required|integer',
-            'apo_note' => 'required|string|max:500',
-            'rs_number' => 'required|integer',
-            'rs_date' => 'required|date_format:Y-m-d',
-            'rs_signing_user' => 'required|string|max:50',
-            'rs_signing_user_en' => 'required|string|max:50',
-            'rs_signing_position' => 'required|string|max:200',
-            'rs_signing_position_en' => 'required|string|max:200',
-            'rs_service' => 'required|string|max:200',
-            'rs_service_en' => 'required|string|max:200',
-            'rs_document_name' => 'required|string|max:50',
-            'rs_document_name_en' => 'required|string|max:50',
-            'rs_short_note' => 'required|string|max:500',
+            'apostil_date' => 'nullable|date_format:Y-m-d',
+            'apostil_signing_user_id' => 'nullable|integer',
+            'rs_number' => 'nullable|integer',
+            'rs_date' => 'nullable|date_format:Y-m-d',
+            'rs_signing_user' => 'nullable|string|max:50',
+            'rs_signing_user_en' => 'nullable|string|max:50',
+            'rs_signing_position' => 'nullable|string|max:200',
+            'rs_signing_position_en' => 'nullable|string|max:200',
+            'rs_service' => 'nullable|string|max:200',
+            'rs_service_en' => 'nullable|string|max:200',
+            'rs_document_name' => 'nullable|string|max:50',
+            'rs_document_name_en' => 'nullable|string|max:50',
+            'rs_short_note' => 'nullable|string|max:500'
         ]);
 
         if ($validator->fails()){
@@ -175,7 +173,6 @@ class ApostilController extends Controller
                 'apostil_date' => request()->get('apostil_date'),
                 'apostil_signing_user_id' => request()->get('apostil_signing_user_id'),
                 'mail_status' => request()->boolean('mail_status'),
-                'apo_note' => request()->input('apo_note'),
                 'rs_number' => request()->input('rs_number'),
                 'rs_date' => request()->get('rs_date'),
                 'rs_signing_user' => request()->get('rs_signing_user'),

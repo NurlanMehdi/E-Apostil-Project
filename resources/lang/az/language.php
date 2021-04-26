@@ -70,6 +70,7 @@ return [
     'statusTesdiqOlunmayib' => 'Təsdiq olunmayıb',
     'statusTesdiqOlunub' => 'Təsdiq olunub',
     'qisaMezmunu' => 'Qısa məzmunu',
+    'qisaMezmun' => 'Qısa məzmun',
     'gender' => 'Cinsi',
     'shexsiyyetVesiqesi' => 'Şəxsiyyəti təsdiq edən sənəd',
     'senedinMexsusOlduguShexs' => 'Sənədin məxsus olduğu şəxs',
