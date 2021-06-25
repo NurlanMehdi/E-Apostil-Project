@@ -22,11 +22,12 @@ class ApostilUser extends Migration
             $table->string('doc_owner_fathername',50)->nullable();
             $table->integer('relationship_id')->nullable();
             $table->integer('power_of_attorney_number')->nullable();
-            $table->integer('letter_number')->nullable();
+            $table->string('letter_number')->nullable();
             $table->date('issue_date')->nullable();
             $table->string('legal_user_name',100)->nullable();
             $table->string('voen',50)->nullable();
             $table->string('position')->nullable();
+            $table->string('name_of_state_body')->nullable();
             $table->integer('doc_type_id')->nullable();
             $table->string('shv_series',4)->nullable();
             $table->integer('shv_number')->length(8)->nullable();
@@ -37,9 +38,10 @@ class ApostilUser extends Migration
             $table->string('doc_presented_fathername')->nullable();
             $table->date('doc_presented_birtday_date')->nullable();
             $table->string('doc_presented_reg_address')->nullable();
-            $table->integer('doc_presented_native_id')->nullable();
+            $table->string('doc_presented_native')->nullable();
             $table->string('doc_presented_tel',12)->nullable();
             $table->string('doc_presented_mail')->nullable();
+            $table->integer('gender')->nullable();
         });
     }
 

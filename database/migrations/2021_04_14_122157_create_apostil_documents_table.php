@@ -16,10 +16,11 @@ class CreateApostilDocumentsTable extends Migration
         Schema::create('apostil_documents', function (Blueprint $table) {
             $table->id();
             $table->string('apostil_number');
+            $table->string('apostil_created');
             $table->date('apostil_date')->nullable();
             $table->integer('apostil_signing_user_id')->nullable();
             $table->integer('mail_status')->default(0);
-            $table->integer('rs_number')->nullable();
+            $table->string('rs_number')->nullable();
             $table->date('rs_date')->nullable();
             $table->string('rs_signing_user',50)->nullable();
             $table->string('rs_signing_user_en',50)->nullable();

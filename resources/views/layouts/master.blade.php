@@ -23,7 +23,6 @@
     <link rel="stylesheet" href="{{asset('vendor/bootstrap/css/bootstrap-reboot.css')}}" />
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;400&display=swap" rel="stylesheet">
     <title>@yield('title')</title>
 </head>
@@ -36,7 +35,7 @@
                 <div class="col-md-12">
                     <div class="container-user-info">
                         <div class="emblem">
-                            <a href="{{route('dashboard')}}">  <img src="{{asset('files/Emblem.png')}}"></a>
+                            <img src="{{asset('files/Emblem.png')}}">
 
                         </div>
                         <div class="emblem-text">
@@ -46,25 +45,27 @@
                             <img src="{{asset('files/icons/user-icon.png')}}">
                         </div>
 
-                        <div class="username">{{Auth::user()->username}}</div>
+
                         <div class="user-info p-4 bd-highlight">
-                            <a class="count info-text">0</a>
+                            <div class="username">{{Auth::user()->username}}</div>
                             <div class="nav-bar"></div>
                             <label class="info-text">{{__('language.xinIstifadechi')}}</label>
                         </div>
-                        <div class="section_header_navbar_item dropdown">
+                        <div class="reload"><a href="{{route('dashboard')}}">Əsas Səhifə</a></div>
+                        <div style="margin-top: 30px;" class="section_header_navbar_item dropdown">
                             <a href="#" class="info-text section_header_navbar_item--link dropdown-toggle" id="langDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{__('language.qanunvericilik')}}&nbsp&nbsp&nbsp&nbsp
+                                {{__('language.qanunvericilik')}}&nbsp
                             </a>
                             <div class="dropdown-menu" aria-labelledby="langDropdown">
-                                <a class="dropdown-item">Bölüm 1</a>
-                                <a class="dropdown-item">Bölüm 2</a>
-                                <a class="dropdown-item">Bölüm 3</a>
-                                <a class="dropdown-item">Bölüm 4</a>
-                                <a class="dropdown-item">Bölüm 5</a>
-                                <a class="dropdown-item">Bölüm 6</a>
+                                <a target="_blank" href="http://www.e-qanun.az/framework/5827  " class="dropdown-item">Xarici rəsmi sənədlərin leqallaşdırılması tələbini ləğv edən Konvensiya</a>
+                                <a target="_blank" href="https://mfa.gov.az/files/shares/Consulate/Apostille.pdf  " class="dropdown-item">Azәrbaycan Respublikasının Xarici İşlәr Nazirliyi tәrәfindәn rәsmi sәnәdlәrә şәhadәtnamәnin (apostilin) verilmәsi Qaydaları</a>
+                                <a target="_blank" href="https://www.hcch.net/en/instruments/conventions/specialised-sections/apostille" class="dropdown-item">Beynəlxalq Xüsusi Hüquq üzrə Haaqa Konfransının internet səhifəsi </a>
                             </div>
                         </div>
+                        @if(Auth::user()->key == 'superadmin')
+                            <div style="margin-top: 30px" class="new-user-for-superadmin"><a href="{{route('new.user.page')}}">Tənzimləmələr</a></div>
+                        @endif
+
                     </div>
                 </div>
             </div>
@@ -90,12 +91,10 @@
     @yield('content')
 @endif
 
-<script src="{{asset('vendor/jQuery/jquery-3.5.1.js')}}"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="{{asset('vendor/popper/popper.min.js')}}"></script>
 <script src="{{asset('vendor/bootstrap/js/bootstrap.js')}}"></script>
-<script src="{{asset('vendor/bootstrap/js/bootstrap.js')}}"></script>
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 <script src="{{asset('js/bootstrap-datepicker.js')}}"></script>
 @yield('javascript')
 </body>

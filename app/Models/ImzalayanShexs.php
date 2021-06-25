@@ -9,6 +9,7 @@ class ImzalayanShexs extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $table = "imzalayan_shexsler";
 
     //protected $fillable = ['name'];
