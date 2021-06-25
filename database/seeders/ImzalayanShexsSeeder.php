@@ -18,7 +18,7 @@ class ImzalayanShexsSeeder extends Seeder
             'Rimma Əzimzadə',
             'Rəşad Rəhmətullayev',
             'Qurbanəli Qasımov',
-            'Orxan Talıb-zadə'
+            'Orxan Talıbzadə'
         ];
 
         foreach ($imzalayan_shexsler as $imzalayan_shexs) {

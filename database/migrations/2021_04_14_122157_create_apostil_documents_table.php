@@ -16,21 +16,21 @@ class CreateApostilDocumentsTable extends Migration
         Schema::create('apostil_documents', function (Blueprint $table) {
             $table->id();
             $table->string('apostil_number');
+            $table->string('apostil_created');
             $table->date('apostil_date')->nullable();
-            $table->integer('apostil_signing_user_id');
+            $table->integer('apostil_signing_user_id')->nullable();
             $table->integer('mail_status')->default(0);
-            $table->string('apo_note',500);
-            $table->integer('rs_number');
+            $table->string('rs_number')->nullable();
             $table->date('rs_date')->nullable();
-            $table->string('rs_signing_user',50);
-            $table->string('rs_signing_user_en',50);
-            $table->string('rs_signing_position',200);
-            $table->string('rs_signing_position_en',200);
-            $table->string('rs_service',200);
-            $table->string('rs_service_en',200);
-            $table->string('rs_document_name',50);
-            $table->string('rs_document_name_en',50);
-            $table->string('rs_short_note',500);
+            $table->string('rs_signing_user',50)->nullable();
+            $table->string('rs_signing_user_en',50)->nullable();
+            $table->string('rs_signing_position',200)->nullable();
+            $table->string('rs_signing_position_en',200)->nullable();
+            $table->string('rs_service',200)->nullable();
+            $table->string('rs_service_en',200)->nullable();
+            $table->string('rs_document_name',50)->nullable();
+            $table->string('rs_document_name_en',50)->nullable();
+            $table->string('rs_short_note',500)->nullable();
             $table->integer('status')->default(0);
 
 

@@ -1,0 +1,151 @@
+html,body {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+@font-face {
+    src: url('/fonts/WorkSans.ttf');
+}
+
+:root {
+    --color-15306b: #15306b;
+    --color-f3f3f3: #f3f3f3;
+    --color-303030: #303030;
+    --font-work-sans:"Work Sans", sans-serif;
+    --font-work-sans-regular:"Work Sans - Regular 400;
+}
+
+.user-apostil-search {
+    min-height: 100vh;
+    height: 100%;
+    background-color: var(--color-f3f3f3);
+    padding: 0 !important;
+}
+
+.header {
+    background-color: var(--color-15306b);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.body {
+    color: var(--color-15306b);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.header .emblem{
+    text-align: end;
+    padding: 0px 40px 0px 0px;
+}
+
+.dropdown-menu-lang {
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+
+}
+
+.dropdown-item-lang:hover {
+    color: #8e8e8e;
+    text-decoration: none;
+}
+
+.section_header_navbar_item--link:hover {
+    color: var(--color-15306b);
+    text-decoration: none;
+}
+.dropdown-item-lang {
+    padding: 0;
+    color: #8e8e8e;
+    text-decoration: none;
+    font-weight: bold;
+}
+.section_header_navbar_item--link {
+    padding: 0;
+    color: var(--color-15306b);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.header .emblem-text{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 0px 0px 0px 0px;
+}
+
+.user-apostil-search .emblem img {
+    height: auto;
+    max-width: 7%;
+}
+
+.search-apostil-number  h5 {
+    color: var(--color-303030);
+}
+
+input {
+    border: 0;
+    background-color: var(--color-f3f3f3);
+    height: 31px;
+    width: 70%;
+    padding: 20px;
+    font-size: 13px;
+    outline: none;
+}
+
+.search-apostil-number {
+    margin: auto;
+    width: 80%;
+    padding: 50px 50px;
+    background-color: #FFFFFF;
+}
+
+.accepted-apostil-doc{
+    margin: auto;
+    width: 85.3%;
+    padding: 50px 50px;
+}
+
+.g-recaptcha {
+    transform:scale(0.77);
+}
+.search {
+    padding: 8px;
+    border: 0;
+    outline: none !important;
+    background-color: #ffffff;
+}
+
+.space{
+    background-color: var(--color-15306b);
+    width: 100%;
+    height: 37px;
+    padding: 8px 30px;
+    font-size: 16px;
+    color: #FFFFFF;
+    margin-top: 14px;
+}
+
+.error-modal {
+    text-align: start;
+    color: red;
+    padding: 0px 10.7%;
+    display: none;
+}
+
+.space-white{
+    background-color: #FFFFFF;
+    width: 100%;
+    height: 37px;
+    padding: 8px 30px;
+    font-size: 16px;
+    color: var(--color-15306b);
+}
