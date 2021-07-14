@@ -73,12 +73,9 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <h6>{{__('language.nomresi')}}</h6>
-                                        <h6 style="position: absolute;color: red;padding: 3px;">*</h6>
-                                        <input style="{{($errors->has('apostil_number')) == true ? 'border: 1px solid red' : ''}}" {{($apostilDocumentInfo->status ?? '') != 0 ? 'readonly' : ''}} class="apostil-nomresi"
+                                        <input disabled style="{{($errors->has('apostil_number')) == true ? 'border: 1px solid red' : ''}}" {{($apostilDocumentInfo->status ?? '') != 0 ? 'readonly' : ''}} class="apostil-nomresi"
                                                value="{{$apostilDocumentInfo->apostil_number ?? request()->input('apostil_number', old('apostil_number'))}}"
-                                               name="apostil_number" placeholder="{{__('language.nomresi')}}"
-                                               oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                               type="text" maxlength="8" minlength="3">
+                                               name="apostil_number" placeholder="{{__('language.nomresi')}}">
                                     </div>
                                     <div class="col-md-6">
                                         <h6>{{__('language.tarixi')}}</h6>
@@ -810,7 +807,7 @@
         function ValidationPages(key){
             if (key == 'next'){
                 if($('.apostil-haqqinda-melumat:visible').length != 0){
-                    if ($('.apostil-nomresi').val() != '' && $('.apostil-imzalayan-shexs').val() != '' && $('.apostil-tarixi').val() != ''){
+                    if ($('.apostil-imzalayan-shexs').val() != '' && $('.apostil-tarixi').val() != ''){
                         $('.round #checkbox').prop('checked',false);
                         $('.round3 #checkbox').prop('checked',false);
                         $('.round2 #checkbox').prop('checked',true);

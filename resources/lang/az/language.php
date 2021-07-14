@@ -67,6 +67,7 @@ return [
     'qohumluqDerecesi' => 'Qohumluq dərəcəsi',
     'etibarnameninNomresi' => 'Etibarnamənin nömrəsi ',
     'huquqiShexsinAdi' => 'Hüquqi şəxsin adı',
+    'shexs' => 'Şəxs',
     'nomre' => 'Nömrə',
     'ishtirakchi' => 'İştirakçı',
     'FizikiVeyaHuquqiShexsinAdi' => 'Fiziki (Hüquqi) şəxsin adı',
@@ -112,4 +113,6 @@ return [
     'theOriginalDoc' => 'Sənədin əsli',
     'MinistryOfJustice' => 'Ədliyyə Nazirliyi',
     'azResp' => 'Azərbaycan Respublikası',
+    'add' => 'ƏlavƏ et',
+
 ];

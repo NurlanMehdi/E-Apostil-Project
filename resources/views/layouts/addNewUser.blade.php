@@ -5,13 +5,17 @@
         <div class="col-md-12">
             <div class="row setting-page-buttons">
                 <button class="users-page active">İstifadəçilər</button>
-                <button class="imzalayan-shexsler">İmzalayan şəxslər</button>
+                @if(Auth::user()->key == 'superadmin')
+                    <button class="imzalayan-shexsler">İmzalayan şəxslər</button>
+                @endif
             </div>
         </div>
     </div>
     <div  class="row setting-add-user">
         <div class="col-md-12">
-            <button type="button" class="add-new-user-button"><a style="color: white;" href="{{route('add.new.apo.user.page','new')}}"><img src="{{asset('files/icons/whitePlus.png')}}">&nbsp&nbsp{{strtoupper(__('language.addNewUser'))}}</a></button>
+            @if(Auth::user()->key == 'superadmin')
+                <button type="button" class="add-new-user-button"><a style="color: white;" href="{{route('add.new.apo.user.page','new')}}"><img src="{{asset('files/icons/whitePlus.png')}}">&nbsp&nbsp{{strtoupper(__('language.addNewUser'))}}</a></button>
+            @endif
         </div>
         <div class="col-md-12">
             <div class="table-responsive">
@@ -26,16 +30,29 @@
                     </thead>
                     <tbody>
                     @foreach($users as $user)
-                        <tr id="{{$user->id}}">
-                            <td scope="col" class="selected-th"><p>{{$user->name .' '. $user->lastname  .' '. $user->fathername }}</p></td>
-                            <td scope="col" class="selected-th"><p>{{$user->username}}</p></td>
-                            <td scope="col" class="selected-th"><p>{{$user->position}}</p></td>
-                            <td >
-                                <button type='button' style="background-color: var(--color-f3f3f3);" class='edit-user'><img style='width: 10px;' src='{{asset('files/icons/edit.png')}}'></button>
-                                <button type='button' style="background-color: var(--color-f3f3f3);" class='remove-user' data-target='#thisDocumentDeleteUserModal'>
-                                    <img style='width: 10px;' src='{{asset('files/icons/x.png')}}'></button>
-                            </td>
-                        </tr>
+                        @if(Auth::user()->key != 'superadmin')
+                            @if(Auth::user()->id == $user->id)
+                                <tr id="{{$user->id}}">
+                                    <td scope="col" class="selected-th"><p>{{$user->name .' '. $user->lastname  .' '. $user->fathername }}</p></td>
+                                    <td scope="col" class="selected-th"><p>{{$user->username}}</p></td>
+                                    <td scope="col" class="selected-th"><p>{{$user->position}}</p></td>
+                                    <td >
+                                        <button type='button' style="background-color: var(--color-f3f3f3);" class='edit-user'><img style='width: 10px;' src='{{asset('files/icons/edit.png')}}'></button>
+                                    </td>
+                                </tr>
+                            @endif
+                        @else
+                            <tr id="{{$user->id}}">
+                                <td scope="col" class="selected-th"><p>{{$user->name .' '. $user->lastname  .' '. $user->fathername }}</p></td>
+                                <td scope="col" class="selected-th"><p>{{$user->username}}</p></td>
+                                <td scope="col" class="selected-th"><p>{{$user->position}}</p></td>
+                                <td >
+                                    <button type='button' style="background-color: var(--color-f3f3f3);" class='edit-user'><img style='width: 10px;' src='{{asset('files/icons/edit.png')}}'></button>
+                                    <button type='button' style="background-color: var(--color-f3f3f3);" class='remove-user' data-target='#thisDocumentDeleteUserModal'>
+                                        <img style='width: 10px;' src='{{asset('files/icons/x.png')}}'></button>
+                                </td>
+                            </tr>
+                        @endif
                     @endforeach
                     </tbody>
                 </table>
@@ -111,7 +128,7 @@
                                 <button type="button" class="delete-signing-user">Sil</button>
                             </div>
                             <div class="col" style="height:50px;margin-top: 30px;">
-                                <button type="button" class="save-new-signing-user">{{strtoupper(__('language.yaddaSaxla'))}}</button>
+                                <button type="button" class="save-new-signing-user">{{strtoupper(__('language.add'))}}</button>
                             </div>
                         </div>
                     </div>

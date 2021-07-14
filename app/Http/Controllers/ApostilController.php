@@ -182,9 +182,28 @@ class ApostilController extends Controller
         $validator = validator(request()->all(),[
         ]);
 
+        $apostilNumber = ApostilDocument::orderBy('id', 'desc')->take(1)->first();
+        $docNumber = 'AP00001/'.date('Y');
+        if (!isset($apostilNumber->apostil_number)){
+            $docNumber = 'AP00001/'.date('Y');
+        }else{
+            $newRow = substr($apostilNumber->apostil_number,2,5)+1;
+            if (strlen($newRow) == 1){
+                $newRow = '0000'.$newRow;
+            }elseif (strlen($newRow) == 2){
+                $newRow = '000'.$newRow;
+            }elseif (strlen($newRow) == 3){
+                $newRow = '00'.$newRow;
+            }elseif (strlen($newRow) == 4){
+                $newRow = '0'.$newRow;
+            }else{
+                $newRow = $newRow;
+            }
+            $docNumber = 'AP'.$newRow.'/'.date('Y');
+        }
+
         if (request()->get('status') == 1){
             $validator = validator(request()->all(),[
-                'apostil_number' => 'required|string|unique:apostil_documents|between:3,8',
                 'apostil_date' => 'required|date_format:d.m.Y',
                 'apostil_signing_user_id' => 'required|integer|numeric|min:1',
                 'apostil_created' => 'required|string|max:50',
@@ -203,7 +222,6 @@ class ApostilController extends Controller
             ]);
         }else{
             $validator = validator(request()->all(),[
-                'apostil_number' => 'required|string|unique:apostil_documents|between:3,8',
                 'apostil_date' => 'nullable|date_format:d.m.Y',
                 'apostil_signing_user_id' => 'nullable|integer',
                 'apostil_created' => 'required|string|max:50',
@@ -228,7 +246,7 @@ class ApostilController extends Controller
         }else{
             $apostilDocument = new ApostilDocument();
 
-            $apostilDocument->apostil_number=request()->get('apostil_number');
+            $apostilDocument->apostil_number = $docNumber;
             $apostilDocument->apostil_date=date('Y-m-d',strtotime(request()->get('apostil_date')));
             $apostilDocument->apostil_signing_user_id=request()->get('apostil_signing_user_id');
             $apostilDocument->apostil_created=request()->get('apostil_created');
@@ -285,7 +303,6 @@ class ApostilController extends Controller
     {
         if (request()->get('status') == 1){
             $validator = validator(request()->all(),[
-                'apostil_number' => 'required|string|between:3,8',
                 'apostil_date' => 'required|date_format:d.m.Y',
                 'apostil_signing_user_id' => 'required|integer|numeric|min:1',
                 'apostil_created' => 'required|string|max:50',
@@ -304,7 +321,6 @@ class ApostilController extends Controller
             ]);
         }else{
             $validator = validator(request()->all(),[
-                'apostil_number' => 'required|string|between:3,8',
                 'apostil_date' => 'nullable|date_format:d.m.Y',
                 'apostil_signing_user_id' => 'nullable|integer',
                 'apostil_created' => 'required|string|max:50',
@@ -334,7 +350,6 @@ class ApostilController extends Controller
                 ]);
             }else{
                 $apostilDocument->update([
-                    'apostil_number' => request()->get('apostil_number'),
                     'apostil_date' => date('Y-m-d',strtotime(request()->get('apostil_date'))),
                     'apostil_signing_user_id' => request()->get('apostil_signing_user_id'),
                     'apostil_created' => request()->get('apostil_created'),
