@@ -188,7 +188,6 @@
                 <th scope="col" class="selected-th">
                     <p style="cursor: pointer;" class="order-status"><img style="margin-top: -2px;" src="{{asset('files/icons/filterOrder.png')}}">&nbsp{{__('language.status')}}</p>
                 </th>
-                <th scope="col" class="selected-th"><p>{{__('language.qisaMezmun')}}</p></th>
                 <th scope="col" class="selected-th"><p>{{__('language.FizikiVeyaHuquqiShexsinAdi')}}</p></th>
                 <th scope="col" class="selected-th"><p>{{__('language.senediTeqdimEdenShexs')}}</p></th>
                 <th scope="col" class="selected-th"><p>{{__('language.apostil_created')}}</p></th>
@@ -460,9 +459,9 @@
                             }
 
                             if (key == 'delete-modal') {
-                                apostilDocuments += "<tr id='" + a.id + "'><td><h6>" + newDate + "</h6></td><td><h6>" + a.apostil_number + "</h6></td><td><h6>" + status + "</h6></td><td><h6 style='max-width: 130px;word-wrap: break-word;'>" + a.rs_short_note + "</h6></td>><td><h6>" + shexsinAdi + "</h6></td><td><h6>" + senediTeqdimEdenShexs + "</h6></td></tr>";
+                                apostilDocuments += "<tr id='" + a.id + "'><td><h6>" + newDate + "</h6></td><td><h6>" + a.apostil_number + "</h6></td><td><h6>" + status + "</h6></td><td><h6>" + shexsinAdi + "</h6></td><td><h6>" + senediTeqdimEdenShexs + "</h6></td></tr>";
                             } else {
-                                apostilDocuments += "<tr id='" + a.id + "'><td style='padding: 5px 0px 0px 11px;'><input " + (a.status == 0 ? '' : 'disabled')  + " class='selected-doc' type='checkbox'></td><td style='padding: 9px 0px 0px 21px;'><h6>" + newDate + "</h6></td><td style='padding: 9px 0px 0px 21px;'><h6>" + a.apostil_number + "</h6></td><td style='padding: 9px 0px 0px 21px;'><h6>" + status + "</h6></td><td style='padding: 9px 0px 0px 21px;'><h6 style='max-width: 250px;word-wrap: break-word;'>" + a.rs_short_note + "</h6></td><td style='padding: 9px 0px 0px 21px;'><h6>" + shexsinAdi + "</h6></td><td style='padding: 9px 0px 0px 21px;'><h6>" +  senediTeqdimEdenShexs+ "</h6></td><td style='padding: 9px 0px 0px 21px;'><h6>" + a.apostil_created + "</h6></td><td style='padding: 3px 0px 0px 21px;'><button type='button' class='edit-doc'><img style='width: 14px;' src='{{asset('files/icons/edit.png')}}'></button><button type='button' " + ((a.status == 0) ? '' : 'disabled')  + " class='remove-doc' data-target='#thisDocumentDeleteModal'><img style='width: 14px;' src='{{asset('files/icons/x.png')}}'></button></td></tr>";
+                                apostilDocuments += "<tr id='" + a.id + "'><td style='padding: 5px 0px 0px 11px;'><input " + (a.status == 0 ? '' : 'disabled')  + " class='selected-doc' type='checkbox'></td><td style='padding: 9px 0px 0px 21px;'><h6>" + newDate + "</h6></td><td style='padding: 9px 0px 0px 21px;'><h6>" + a.apostil_number + "</h6></td><td style='padding: 9px 0px 0px 21px;'><h6>" + status + "</h6></td><td style='padding: 9px 0px 0px 21px;'><h6>" + shexsinAdi + "</h6></td><td style='padding: 9px 0px 0px 21px;'><h6>" +  senediTeqdimEdenShexs+ "</h6></td><td style='padding: 9px 0px 0px 21px;'><h6>" + a.apostil_created + "</h6></td><td style='padding: 3px 0px 0px 21px;'><button type='button' class='edit-doc'><img style='width: 14px;' src='{{asset('files/icons/edit.png')}}'></button><button type='button' " + ((a.status == 0) ? '' : 'disabled')  + " class='remove-doc' data-target='#thisDocumentDeleteModal'><img style='width: 14px;' src='{{asset('files/icons/x.png')}}'></button></td></tr>";
                             }
                         })
                         if (key == 'delete-modal') {

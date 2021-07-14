@@ -62,10 +62,7 @@
                                 <a target="_blank" href="https://www.hcch.net/en/instruments/conventions/specialised-sections/apostille" class="dropdown-item">Beynəlxalq Xüsusi Hüquq üzrə Haaqa Konfransının internet səhifəsi </a>
                             </div>
                         </div>
-                        @if(Auth::user()->key == 'superadmin')
-                            <div style="margin-top: 30px" class="new-user-for-superadmin"><a href="{{route('new.user.page')}}">Tənzimləmələr</a></div>
-                        @endif
-
+                        <div style="margin-top: 30px" class="new-user-for-superadmin"><a href="{{route('new.user.page')}}">Tənzimləmələr</a></div>
                     </div>
                 </div>
             </div>
